@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SaveGame>
+  <Roads>
+    <Road tag="Road" Type="Road(Clone)" x="0" y="0" z="-117,2022" />
+    <Road tag="Road" Type="Road(Clone)" x="0" y="0" z="82,79614" />
+  </Roads>
+  <RootObjects>
+    <RootObject tag="Bonuses" x="0" y="0" z="-386,4024">
+      <GameObject Type="Shit(Clone)" x="1,666667" y="0,8753705" z="-147,2036" />
+      <GameObject Type="Shit(Clone)" x="3,333333" y="0,8753705" z="-207,2036" />
+      <GameObject Type="Shit(Clone)" x="-1,666667" y="0,8753705" z="-217,2036" />
+      <GameObject Type="Shit(Clone)" x="-1,666667" y="0,8753705" z="-187,2036" />
+      <GameObject Type="Shit(Clone)" x="-3,333333" y="0,8753705" z="-197,2036" />
+      <GameObject Type="Shit(Clone)" x="-1,192093E-07" y="0,8753705" z="-47,20364" />
+      <GameObject Type="Shit(Clone)" x="-3,333333" y="0,8753705" z="-157,2036" />
+      <GameObject Type="Shit(Clone)" x="-1,192093E-07" y="0,8753705" z="-217,2036" />
+      <GameObject Type="Shit(Clone)" x="3,333333" y="0,8753705" z="-57,20364" />
+      <GameObject Type="Shit(Clone)" x="-1,192093E-07" y="0,8753705" z="-137,2036" />
+      <GameObject Type="Candy-Red-Orange(Clone)" x="-1,666667" y="0,8000001" z="-77,20364" />
+      <GameObject Type="Candy-Red-Blue(Clone)" x="3,333333" y="0,8000001" z="-87,20364" />
+      <GameObject Type="Candy-Red-Orange(Clone)" x="-1,192093E-07" y="0,8000001" z="-177,2036" />
+      <GameObject Type="Candy-Light-green(Clone)" x="1,666667" y="0,8000001" z="-57,20364" />
+      <GameObject Type="Candy-Light-green(Clone)" x="-1,192093E-07" y="0,8000001" z="-37,20364" />
+      <GameObject Type="Candy-Light-green(Clone)" x="-1,192093E-07" y="0,8000001" z="-197,2036" />
+      <GameObject Type="Candy-Light-green(Clone)" x="-3,333333" y="0,8000001" z="-117,2036" />
+      <GameObject Type="Candy-Red-Orange(Clone)" x="1,666667" y="0,8000001" z="-87,20364" />
+      <GameObject Type="Candy-Red-Orange(Clone)" x="1,666667" y="0,8000001" z="-217,2036" />
+      <GameObject Type="Candy-Red-Orange(Clone)" x="-1,666667" y="0,8000001" z="-147,2036" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="-1,666667" y="1,073774" z="-37,20364" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="-1,666667" y="1,073774" z="-67,20364" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="3,333333" y="1,073774" z="-37,20364" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="-1,666667" y="1,073774" z="-137,2036" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="-1,192093E-07" y="1,073774" z="-167,2036" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="3,333333" y="1,073774" z="-77,20364" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="-1,666667" y="1,073774" z="-207,2036" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="-1,192093E-07" y="1,073774" z="-27,20364" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="-1,192093E-07" y="1,073774" z="-147,2036" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="-1,666667" y="1,073774" z="-177,2036" />
+    </RootObject>
+    <RootObject tag="Bonuses" x="0" y="0" z="-186,6004">
+      <GameObject Type="Shit(Clone)" x="1,666667" y="0,8753705" z="22,79709" />
+      <GameObject Type="Shit(Clone)" x="3,333333" y="0,8753705" z="152,7971" />
+      <GameObject Type="Shit(Clone)" x="-1,192093E-07" y="0,8753705" z="92,79709" />
+      <GameObject Type="Shit(Clone)" x="-1,192093E-07" y="0,8753705" z="52,79709" />
+      <GameObject Type="Shit(Clone)" x="1,666667" y="0,8753705" z="152,7971" />
+      <GameObject Type="Shit(Clone)" x="1,666667" y="0,8753705" z="142,7971" />
+      <GameObject Type="Shit(Clone)" x="-1,666667" y="0,8753705" z="82,79709" />
+      <GameObject Type="Shit(Clone)" x="-1,666667" y="0,8753705" z="62,79709" />
+      <GameObject Type="Shit(Clone)" x="3,333333" y="0,8753705" z="102,7971" />
+      <GameObject Type="Shit(Clone)" x="-3,333333" y="0,8753705" z="122,7971" />
+      <GameObject Type="Candy-Red-Blue(Clone)" x="-1,666667" y="0,8000001" z="132,7971" />
+      <GameObject Type="Candy-Light-green(Clone)" x="1,666667" y="0,8000001" z="42,79709" />
+      <GameObject Type="Candy-Light-green(Clone)" x="-1,666667" y="0,8000001" z="162,7971" />
+      <GameObject Type="Candy-Red-Blue(Clone)" x="-1,666667" y="0,8000001" z="32,79709" />
+      <GameObject Type="Candy-Red-Orange(Clone)" x="1,666667" y="0,8000001" z="102,7971" />
+      <GameObject Type="Candy-Light-green(Clone)" x="3,333333" y="0,8000001" z="112,7971" />
+      <GameObject Type="Candy-Red-Orange(Clone)" x="-1,192093E-07" y="0,8000001" z="32,79709" />
+      <GameObject Type="Candy-Red-Blue(Clone)" x="-1,666667" y="0,8000001" z="102,7971" />
+      <GameObject Type="Candy-Red-Orange(Clone)" x="1,666667" y="0,8000001" z="92,79709" />
+      <GameObject Type="Candy-Red-Blue(Clone)" x="3,333333" y="0,8000001" z="132,7971" />
+      <GameObject Type="Candy-Red-Blue(Clone)" x="-1,666667" y="0,8000001" z="72,79709" />
+      <GameObject Type="Candy-Red-Blue(Clone)" x="3,333333" y="0,8000001" z="92,79709" />
+      <GameObject Type="Candy-Red-Blue(Clone)" x="-3,333333" y="0,8000001" z="12,79709" />
+      <GameObject Type="Candy-Red-Orange(Clone)" x="-3,333333" y="0,8000001" z="142,7971" />
+      <GameObject Type="Candy-Red-Blue(Clone)" x="3,333333" y="0,8000001" z="82,79709" />
+      <GameObject Type="Candy-Red-Blue(Clone)" x="-1,666667" y="0,8000001" z="172,7971" />
+      <GameObject Type="Candy-Light-green(Clone)" x="-1,666667" y="0,8000001" z="142,7971" />
+      <GameObject Type="Candy-Red-Orange(Clone)" x="1,666667" y="0,8000001" z="-7,202911" />
+      <GameObject Type="Candy-Red-Blue(Clone)" x="-1,192093E-07" y="0,8000001" z="132,7971" />
+      <GameObject Type="Candy-Red-Orange(Clone)" x="-3,333333" y="0,8000001" z="112,7971" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="3,333333" y="1,073774" z="-7,202911" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="-1,192093E-07" y="1,073774" z="112,7971" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="1,666667" y="1,073774" z="72,79709" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="-1,192093E-07" y="1,073774" z="-7,202911" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="3,333333" y="1,073774" z="172,7971" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="-3,333333" y="1,073774" z="72,79709" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="3,333333" y="1,073774" z="12,79709" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="-1,666667" y="1,073774" z="12,79709" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="-1,666667" y="1,073774" z="22,79709" />
+      <GameObject Type="Obstacle-Concrete-Pyramide(Clone)" x="3,333333" y="1,073774" z="62,79709" />
+    </RootObject>
+  </RootObjects>
+  <GameInfo ScrollSpeed="30" Score="159" />
+</SaveGame>
