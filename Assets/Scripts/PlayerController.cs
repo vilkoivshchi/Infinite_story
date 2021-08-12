@@ -87,6 +87,7 @@ namespace Infinite_story
             // подписываемся на события
             BonusAction.BonusesAction += OnScoreChanged;
             ColliderWatchdog.SpawnColliderHit += OnRoadSpawn;
+            LoadGame.OnSaveFileReaded += OnGameLoaded;
 
 
         }
@@ -97,8 +98,38 @@ namespace Infinite_story
             BonusAction.BonusesAction -= OnScoreChanged;
             _floorCtl.OnDestroy();
             ColliderWatchdog.SpawnColliderHit -= OnRoadSpawn;
+            LoadGame.OnSaveFileReaded -= OnGameLoaded;
 
         }
+
+        private void OnGameLoaded(List<GameObject> LoadedObjects)
+        {
+            GameObject[] FindedBonuses = GameObject.FindGameObjectsWithTag("Bonuses");
+            GameObject[] FindedRoads = GameObject.FindGameObjectsWithTag("Road");
+            ReplaceGamObjToLoaded(FindedBonuses);
+            ReplaceGamObjToLoaded(FindedRoads);
+            
+        }
+
+        private void ReplaceGamObjToLoaded(GameObject[] ObjArray)
+        {
+            if(ObjArray.Length > 0)
+            {
+                foreach (GameObject Obj in ObjArray)
+                {
+                    if (Obj.active)
+                    {
+                        Destroy(Obj);
+                    }
+                    else
+                    {
+                        Obj.SetActive(true);
+                    }
+                }
+            }
+            
+        }
+
         /// <summary>
         /// Grow speed after some road respawns
         /// </summary>
@@ -126,6 +157,10 @@ namespace Infinite_story
             currentScore?.Invoke(score);
         }
 
+        void OnGameLoad(List<GameObject> LoadedBonusesList)
+        {
+
+        }
 
 
         void Start()
@@ -138,23 +173,20 @@ namespace Infinite_story
             _rb = GetComponent<Rigidbody>();
             _playerCollider = Player.GetComponent<SphereCollider>();
             currentScore?.Invoke(score);
-            // удаляем бонусы при спауне игрока
             //Спавним полы
-            _floorCtl = new FloorController(FirstFloorPos);
-
-            _floorCtl.GridSizeX = GridSizeX;
-            _floorCtl.GridSizeZ = GridSizeZ;
             
-            _floorCtl.BadBonusesNumber = BadBonusesNumber;
-            _floorCtl.GoodBonusesNumber = GoodBonusesNumber;
-            _floorCtl.ModsNumber = ModNumber;
-            _floorCtl.TrapNumber = TrapNumber;
-
-            _floorCtl.GoodBonuses = GoodBonuses;
-            _floorCtl.BadBonuses = BadBonuses;
-            _floorCtl.Modificators = Modificators;
-            _floorCtl.Traps = Traps;
-            
+            _floorCtl = new FloorController(
+                FirstFloorPos,
+                GoodBonuses,
+                GoodBonusesNumber,
+                BadBonuses,
+                BadBonusesNumber,
+                Modificators,
+                ModNumber,
+                Traps,
+                TrapNumber,
+                GridSizeX,
+                GridSizeZ);
             _floorCtl.Awake();
             _floorCtl.Start();
             GameObject SpawnedRoad = _floorCtl.SpawnedRoad;

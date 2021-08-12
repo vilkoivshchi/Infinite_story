@@ -11,41 +11,50 @@ namespace Infinite_story
         /// <summary>
         /// Spawn bonuses to map
         /// </summary>
-        /// <param name="gb">Good bonuses quantity</param>
-        /// <param name="bb">Bad bonuses quantity</param>
-        /// <param name="trapN">Traps quantity</param>
-        /// <param name="gridX">Cells for bonuses along X axis</param>
-        /// <param name="gridZ">Cells for bonuses along Z axis</param>
+        /// <param name="GoodBonusesNum">Good bonuses quantity</param>
+        /// <param name="BabBonusesNum">Bad bonuses quantity</param>
+        /// <param name="TrapsNum">Traps quantity</param>
+        /// <param name="GridX">Cells for bonuses along X axis</param>
+        /// <param name="GridZ">Cells for bonuses along Z axis</param>
         /// <param name="goodbonuses">List of GameObject as Good bonuses</param>
         /// <param name="badbonuses">List of GameObject as Bad bonuses</param>
         /// <param name="mods">List of GameObject as Player's Modificator</param>
         /// <param name="traps">List of GameObject as Traps</param>
         /// <param name="RoadObject">Object where represent sizes of road</param>
         public BonusesSpawner(
-            int gb, 
-            int bb, 
-            int trapN, 
-            int gridX, 
-            int gridZ,
-            List<GameObject> badbonuses,
             List<GameObject> goodbonuses,
+            int GoodBonusesNum,
+            List<GameObject> badbonuses,
+            int BabBonusesNum,
             List<GameObject> mods,
+            int modsNum,
             List<GameObject> traps,
+            int TrapsNum, 
+            int GridX, 
+            int GridZ,
             GameObject RoadObject
             ) 
         {
-            GoodBonusesNumber = gb;
-            BadBonusesNumber = bb;
-            TrapNumber = trapN;
-            GridSizeX = gridX;
-            GridSizeZ = gridZ;
+            GoodBonusesNumber = GoodBonusesNum;
+            BadBonusesNumber = BabBonusesNum;
+            TrapNumber = TrapsNum;
+            GridSizeX = GridX;
+            GridSizeZ = GridZ;
             BadBonuses = badbonuses;
             GoodBonuses = goodbonuses;
             Modificators = mods;
+            ModsNumber = modsNum; 
             Traps = traps;
             RoadObj = RoadObject;
         }
-       
+        /// <summary>
+        /// If you want load game, use this constructor
+        /// </summary>
+        /// <param name="LoadedGameObj">Already Spawned GameObject</param>
+        public BonusesSpawner(GameObject LoadedGameObj)
+        {
+            RootBonusesObjects = LoadedGameObj;
+        }
         public int GridSizeX;
         public int GridSizeZ;
 

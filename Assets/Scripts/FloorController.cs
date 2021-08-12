@@ -12,18 +12,18 @@ namespace Infinite_story
         private int SpawnCounter = 0;
         private Vector3 _startPos;
 
-        public int GridSizeX;
-        public int GridSizeZ;
+        private int _gridSizeX;
+        private int _gridSizeZ;
 
-        public int GoodBonusesNumber;
-        public int BadBonusesNumber;
-        public int TrapNumber;
-        public int ModsNumber;
+        private int _goodBonusesNumber;
+        private int _badBonusesNumber;
+        private int _trapNumber;
+        private int _modsNumber;
 
-        public List<GameObject> BadBonuses;
-        public List<GameObject> GoodBonuses;
-        public List<GameObject> Modificators;
-        public List<GameObject> Traps;
+        private List<GameObject> _badBonuses;
+        private List<GameObject> _goodBonuses;
+        private List<GameObject> _modificators;
+        private List<GameObject> _traps;
 
         private BonusesSpawner _bonusesSpawner;
         private List<BonusesSpawner> _bsList;
@@ -40,6 +40,34 @@ namespace Infinite_story
         {
             _startPos = StartPos;
         }
+        
+        public FloorController(
+            Vector3 StartPos, 
+            List<GameObject> GoodBonuses, 
+            int GoodBonusesNum, 
+            List<GameObject> BadBonuses, 
+            int BadBonusesNum, 
+            List<GameObject> Modificators, 
+            int ModificatorsNum,
+            List<GameObject> Traps,
+            int TrapsNum,
+            int GridSizeX,
+            int GridSizeZ
+            )
+        {
+            _startPos = StartPos;
+            _goodBonuses = GoodBonuses;
+            _goodBonusesNumber = GoodBonusesNum;
+            _badBonuses = BadBonuses;
+            _badBonusesNumber = BadBonusesNum;
+            _modificators = Modificators;
+            _modsNumber = ModificatorsNum;
+            _traps = Traps;
+            _trapNumber = TrapsNum;
+            _gridSizeX = GridSizeX;
+            _gridSizeZ = GridSizeZ;
+
+        }
 
 
         private void SpawnRoad()
@@ -50,7 +78,19 @@ namespace Infinite_story
             GameObject Road = _spawner.SpawnNewRoad(new Vector3(LastRoad.transform.position.x,LastRoad.transform.position.y, LastRoad.transform.position.z));
             //Road.name = $"Road{SpawnCounter++}";
             // Spawn some bonuses
-            _bonusesSpawner = new BonusesSpawner(GoodBonusesNumber, BadBonusesNumber, TrapNumber, GridSizeX, GridSizeZ, BadBonuses, GoodBonuses, Modificators, Traps, Road);
+            _bonusesSpawner = new BonusesSpawner(
+                _goodBonuses, 
+                _goodBonusesNumber,
+                _badBonuses,
+                _badBonusesNumber,
+                _modificators, 
+                _modsNumber,
+                _traps,
+                _trapNumber, 
+                _gridSizeX, 
+                _gridSizeZ,    
+                Road
+                );
             _bsList.Add(_bonusesSpawner);
             //_bonusesSpawner.Awake();
             _bonusesSpawner.SpawnBonuses();

@@ -132,10 +132,12 @@ namespace Infinite_story
                             GameObjEl.SetAttribute("HarmLevel", bonusAct.ChangeScoreTo.ToString());
                         }
                         */
-                        GameObjEl.SetAttribute("Type", goChild.name);
+                        GameObjEl.SetAttribute("Name", goChild.name);
+                        GameObjEl.SetAttribute("tag", goChild.tag);
                         GameObjEl.SetAttribute("x", childTransform.position.x.ToString());
                         GameObjEl.SetAttribute("y", childTransform.position.y.ToString());
                         GameObjEl.SetAttribute("z", childTransform.position.z.ToString());
+                        
                         NestObjElement.AppendChild(GameObjEl);
 
                     }
@@ -146,7 +148,7 @@ namespace Infinite_story
                 {
                     XmlElement RoadEl = SaveFile.CreateElement("Road");
                     RoadEl.SetAttribute("tag", road.tag);
-                    RoadEl.SetAttribute("Type", road.name);
+                    RoadEl.SetAttribute("Name", road.name);
                     RoadEl.SetAttribute("x", road.transform.position.x.ToString());
                     RoadEl.SetAttribute("y", road.transform.position.y.ToString());
                     RoadEl.SetAttribute("z", road.transform.position.z.ToString());
