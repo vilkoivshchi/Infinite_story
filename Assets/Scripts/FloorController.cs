@@ -40,6 +40,8 @@ namespace Infinite_story
         {
             _startPos = StartPos;
         }
+
+
         
         public FloorController(
             Vector3 StartPos, 
@@ -68,6 +70,8 @@ namespace Infinite_story
             _gridSizeZ = GridSizeZ;
 
         }
+
+
 
 
         private void SpawnRoad()
@@ -137,6 +141,28 @@ namespace Infinite_story
             //Road.name = $"Road{SpawnCounter++}";
             _roadList.Add(Road);
             _bsList = new List<BonusesSpawner>();
+        }
+        /// <summary>
+        /// передаёт предзагруженные объекты и спауних их в реальные
+        /// </summary>
+        /// <param name="LoadedList"></param>
+        public void OnGameLoad(List<GameObject> LoadedList)
+        {
+            _roadList.Clear();
+            _bsList.Clear();
+            foreach(GameObject LoadedRoad in LoadedList)
+            {
+                GameObject SpawnedLoadedRoad = _spawner.SpawnLoadedObject(LoadedRoad);
+                if(SpawnedLoadedRoad != null)
+                {
+                    _roadList.Add(SpawnedLoadedRoad);
+                    GameObject.Destroy(LoadedRoad);
+                }
+                else
+                {
+                    Debug.LogWarning("_roadList is empty!");
+                }
+            }
         }
 
         private void SaveFile()

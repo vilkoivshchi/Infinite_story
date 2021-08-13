@@ -169,10 +169,12 @@ namespace Infinite_story
                 }
             }
             #endregion
+            /*
             foreach(GameObject LoadedObj in LoadedObjects)
             {
                 LoadedObj.SetActive(false);
             }
+            */
             OnSaveFileReaded?.Invoke(LoadedObjects);
         }
     }

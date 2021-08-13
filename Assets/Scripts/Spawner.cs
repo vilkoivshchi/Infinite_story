@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
+using System;
+using System.Text.RegularExpressions;
 
 namespace Infinite_story
 {
@@ -10,6 +12,8 @@ namespace Infinite_story
         public GameObject RoadPrefab;
         private string RoadPrefabPath = "Assets/Resources/Prefabs/Road.prefab";
         private string RoadPrefabShortPath = "Prefabs/Road";
+
+        private string PrefabFolderName = "Prefabs/";
 /*
         private Vector3 SpawnPos;
   
@@ -34,9 +38,37 @@ namespace Infinite_story
             }
         }
 
-        // событие нужно для модификаторов игрока
-        
-        
+        public GameObject SpawnLoadedObject(GameObject LoadedBlank)
+        {
+            string LoadedPrefabName = Regex.Replace(LoadedBlank.name, @"\(.+\)", String.Empty);
+            
+            if(LoadedPrefabName != string.Empty)
+            {
+                LoadedPrefabName = PrefabFolderName + LoadedPrefabName;
+                Debug.Log($"LoadedPrefabName: {LoadedPrefabName}");
+                GameObject LoadedPrefab = (GameObject)Resources.Load(LoadedPrefabName);
+                if (LoadedPrefab != null)
+                {
+                    GameObject LoadedSpawnedRoad = GameObject.Instantiate(LoadedPrefab, new Vector3(
+                        LoadedBlank.transform.position.x,
+                        LoadedBlank.transform.position.y,
+                        LoadedBlank.transform.position.z), Quaternion.identity);
+                    return LoadedSpawnedRoad;
+                }
+                else
+                {
+                    Debug.LogError($"{LoadedPrefab} is null!");
+                    return null;
+                }
+                //GameObject SpawnedRoad = GameObject.Instantiate()
+            }
+            else
+            {
+                Debug.LogError("Can't resolve prefab name!");
+                return null;
+            }
+        }
+
         // спавним следующий сегмент встык к текущему
         public GameObject SpawnNewRoad(Vector3 pos)
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Infinite_story
@@ -104,30 +105,43 @@ namespace Infinite_story
 
         private void OnGameLoaded(List<GameObject> LoadedObjects)
         {
-            GameObject[] FindedBonuses = GameObject.FindGameObjectsWithTag("Bonuses");
-            GameObject[] FindedRoads = GameObject.FindGameObjectsWithTag("Road");
-            ReplaceGamObjToLoaded(FindedBonuses);
-            ReplaceGamObjToLoaded(FindedRoads);
-            
-        }
-
-        private void ReplaceGamObjToLoaded(GameObject[] ObjArray)
-        {
-            if(ObjArray.Length > 0)
+            // здесь сперва найдем теги, которые нужно искать на сцене и удалять объекты с ними
+            List<string> LoadedObjTags = new List<string>();
+            foreach(GameObject LoadedObj in LoadedObjects)
             {
-                foreach (GameObject Obj in ObjArray)
+                bool TagFinded = LoadedObjTags.Contains(LoadedObj.tag);
+                if (!TagFinded)
                 {
-                    if (Obj.active)
+                    LoadedObjTags.Add(LoadedObj.tag);
+                }
+                // выключенные объекты не входят в поиск по тегу
+                LoadedObj.SetActive(false);
+            }
+            if(LoadedObjTags.Count > 0)
+            {
+                foreach(string ObjTag in LoadedObjTags)
+                {
+                    GameObject[] FindedObjects = GameObject.FindGameObjectsWithTag(ObjTag);
+                    if(FindedObjects.Length > 0)
                     {
-                        Destroy(Obj);
-                    }
-                    else
-                    {
-                        Obj.SetActive(true);
+                        foreach(GameObject obj in FindedObjects)
+                        {
+                            Destroy(obj);
+                        }
                     }
                 }
             }
+
+            List<GameObject> LoadedRoadsList = new List<GameObject>();
+            foreach (GameObject LoadedObj in LoadedObjects)
+            {
+                LoadedObj.SetActive(true);
+                if (LoadedObj.CompareTag("Road")) LoadedRoadsList.Add(LoadedObj);
+            }
             
+            _floorCtl.OnGameLoad(LoadedRoadsList);
+            LoadedRoadsList.Clear();
+
         }
 
         /// <summary>
@@ -155,11 +169,6 @@ namespace Infinite_story
         {
             score += newScore;
             currentScore?.Invoke(score);
-        }
-
-        void OnGameLoad(List<GameObject> LoadedBonusesList)
-        {
-
         }
 
 
