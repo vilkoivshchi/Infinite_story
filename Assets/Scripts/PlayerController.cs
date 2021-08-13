@@ -89,9 +89,10 @@ namespace Infinite_story
             BonusAction.BonusesAction += OnScoreChanged;
             ColliderWatchdog.SpawnColliderHit += OnRoadSpawn;
             LoadGame.OnSaveFileReaded += OnGameLoaded;
-
-
+            LoadGame.SetScore += OnScoreChanged;
+            LoadGame.SetScrollSpeed += OnScrollSpeedChange;
         }
+
         private void OnDestroy()
         {
             // отписываемся от событий при выгрузке сцены
@@ -100,7 +101,8 @@ namespace Infinite_story
             _floorCtl.OnDestroy();
             ColliderWatchdog.SpawnColliderHit -= OnRoadSpawn;
             LoadGame.OnSaveFileReaded -= OnGameLoaded;
-
+            LoadGame.SetScore -= OnScoreChanged;
+            LoadGame.SetScrollSpeed -= OnScrollSpeedChange;
         }
 
         private void OnGameLoaded(List<GameObject> LoadedObjects)
@@ -164,6 +166,10 @@ namespace Infinite_story
             NewSpeed?.Invoke(ScrollSpeed);
         }
 
+        void OnScrollSpeedChange(int NewScroolSpeed)
+        {
+            ScrollSpeed = NewScroolSpeed;
+        }
         
         void OnScoreChanged(int newScore)
         {

@@ -11,6 +11,8 @@ namespace Infinite_story
     {
         List<GameObject> LoadedObjects;
         public static Action<List<GameObject>> OnSaveFileReaded;
+        public static Action<int> SetScore;
+        public static Action<int> SetScrollSpeed;
        
         public LoadGame(string filename)
         {
@@ -80,32 +82,6 @@ namespace Infinite_story
                         float.TryParse(BonusBlankZ.Value, out BonusBlankPosZ);
                         BonusBlank.transform.position = new Vector3(BonusBlankPosX, BonusBlankPosY, BonusBlankPosZ);
                         BonusBlank.transform.SetParent(RootGameObject.transform, true);
-                        /*
-                        attr = (XmlAttribute)ObjectRootNode.ChildNodes[j].Attributes.GetNamedItem("Type");
-                        string LoadPrefabFullName = Regex.Replace(attr.Value, @"\(.+\)", String.Empty);
-                        string LoadPrefabShortName = "Prefabs/" + LoadPrefabFullName;
-                        LoadPrefabFullName = "Assets/Resources/Prefabs/" + LoadPrefabFullName + ".prefab";
-
-                        float PosX, PosY, PosZ;
-                        attr = (XmlAttribute)ObjectRootNode.ChildNodes[j].Attributes.GetNamedItem("x");
-                        float.TryParse(attr.Value, out PosX);
-                        attr = (XmlAttribute)ObjectRootNode.ChildNodes[j].Attributes.GetNamedItem("y");
-                        float.TryParse(attr.Value, out PosY);
-                        attr = (XmlAttribute)ObjectRootNode.ChildNodes[j].Attributes.GetNamedItem("z");
-                        float.TryParse(attr.Value, out PosZ);
-
-                        if (File.Exists(LoadPrefabFullName))
-                        {
-                            GameObject LoadPrefabGameObject = (GameObject)Resources.Load(LoadPrefabShortName);
-                            GameObject Bonus = GameObject.Instantiate(LoadPrefabGameObject, RootGameObject.transform, true);
-                            Bonus.transform.position = new Vector3(PosX, PosY, PosZ);
-
-                        }
-                        else
-                        {
-                            Debug.LogError($"Can't found {LoadPrefabFullName}");
-                        }
-                        */
                     }
                 }
                 LoadedObjects.Add(RootGameObject);
@@ -116,7 +92,6 @@ namespace Infinite_story
             for(int i = 0; i < roadList.Count; i++)
             {
                 XmlNode RoadsRootNode = roadList.Item(i);
-                //XmlAttribute attr;
                 if (RoadsRootNode.HasChildNodes)
                 {
                     for (int j = 0; j < RoadsRootNode.ChildNodes.Count; j++)
@@ -135,46 +110,26 @@ namespace Infinite_story
                         float.TryParse(RoadPosZ.Value, out LoadedRoadPosZ);
                         LoadedRoad.transform.position = new Vector3(LoadedRoadPosX, LoadedRoadPosY, LoadedRoadPosZ);
                         LoadedObjects.Add(LoadedRoad);
-                        /*
-                        attr = (XmlAttribute)RoadsRootNode.ChildNodes[j].Attributes.GetNamedItem("Name");
-                        string LoadPrefabFullName = Regex.Replace(attr.Value, @"\(.+\)", String.Empty);
-                        string LoadPrefabShortName = "Prefabs/" + LoadPrefabFullName;
-                        LoadPrefabFullName = "Assets/Resources/Prefabs/" + LoadPrefabFullName + ".prefab";
-
-                        float PosX, PosY, PosZ;
-                        attr = (XmlAttribute)RoadsRootNode.ChildNodes[j].Attributes.GetNamedItem("x");
-                        float.TryParse(attr.Value, out PosX);
-                        attr = (XmlAttribute)RoadsRootNode.ChildNodes[j].Attributes.GetNamedItem("y");
-                        float.TryParse(attr.Value, out PosY);
-                        attr = (XmlAttribute)RoadsRootNode.ChildNodes[j].Attributes.GetNamedItem("z");
-                        float.TryParse(attr.Value, out PosZ);
-                        string RoadTag;
-                        attr = (XmlAttribute)RoadsRootNode.ChildNodes[j].Attributes.GetNamedItem("tag");
-                        RoadTag = attr.Value;
-
-                        if (File.Exists(LoadPrefabFullName))
-                        {
-                            GameObject LoadPrefabGameObject = (GameObject)Resources.Load(LoadPrefabShortName);
-                            GameObject Road = GameObject.Instantiate(LoadPrefabGameObject);
-                            Road.transform.position = new Vector3(PosX, PosY, PosZ);
-                            Road.tag = RoadTag;
-
-                        }
-                        else
-                        {
-                            Debug.LogError($"Can't found {LoadPrefabFullName}");
-                        }
-                        */
+                        
                     }
                 }
             }
             #endregion
-            /*
-            foreach(GameObject LoadedObj in LoadedObjects)
+            // Читаем общую информацию об игре
+            XmlNodeList GameInfoNodeList = doc.GetElementsByTagName("GameInfo");
+            int GameScore = -1;
+            int ScrollSpeed = -1;
+            for(int i = 0; i < GameInfoNodeList.Count; i++)
             {
-                LoadedObj.SetActive(false);
+                XmlNode GameInfoNode = GameInfoNodeList.Item(i);
+                XmlAttribute GameInfoScore = (XmlAttribute)GameInfoNode.Attributes.GetNamedItem("Score");
+                XmlAttribute GameinfoScrollSpeed = (XmlAttribute)GameInfoNode.Attributes.GetNamedItem("ScrollSpeed");
+                Int32.TryParse(GameInfoScore?.Value, out GameScore);
+                Int32.TryParse(GameinfoScrollSpeed?.Value, out ScrollSpeed);
             }
-            */
+            if (GameScore > 0) SetScore?.Invoke(GameScore);
+            if (ScrollSpeed > 0) SetScrollSpeed?.Invoke(ScrollSpeed);
+
             OnSaveFileReaded?.Invoke(LoadedObjects);
         }
     }
