@@ -12,7 +12,7 @@ namespace Infinite_story
     public class Spawner
     {
         public GameObject RoadPrefab;
-        private string RoadPrefabPath = "Assets/Resources/Prefabs/Road.prefab";
+        //private string RoadPrefabPath = "Assets/Resources/Prefabs/Road.prefab";
         private string RoadPrefabShortPath = "Prefabs/Road";
 
         private string PrefabFolderName = "Prefabs/";
@@ -40,7 +40,6 @@ namespace Infinite_story
             if(LoadedPrefabName != string.Empty)
             {
                 LoadedPrefabName = PrefabFolderName + LoadedPrefabName;
-                Debug.Log($"LoadedPrefabName: {LoadedPrefabName}");
                 GameObject LoadedPrefab = (GameObject)Resources.Load(LoadedPrefabName);
                 if (LoadedPrefab != null)
                 {

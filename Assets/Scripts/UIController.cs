@@ -20,9 +20,9 @@ namespace Infinite_story
 
         [Tooltip("This marker will shown if player not in screen")] public GameObject PlayerMarker;
 
-        public static System.Action SaveFileEvent;
+        public static Action SaveFileEvent;
         public static Action<string> SendTimeToSaveFile;
-        public static System.Action LoadFileAction;
+        public static Action LoadFileAction;
 
         [SerializeField] private TMP_Text _scoreText;
         [SerializeField] private TMP_Text _time;
@@ -30,27 +30,27 @@ namespace Infinite_story
         private float _timeScale = 0;
         private string _timeText;
         private bool _isPlayerVisible = true;
-        private Camera _mainCam;
+        //private Camera _mainCam;
 
-        private Vector3 _playerOnScreenPos;
+        //private Vector3 _playerOnScreenPos;
 
         // ссылка на игрока
-        private GameObject _player;
+        //private GameObject _player;
 
         private void Awake()
         {
             PlayerController.currentScore += OnScoreChange;
             PlayerController.IsPlayerVisible += IsPlayerVisible;
-            PlayerController.SetPlayer += SetPlayer;
-            PlayerController.SetCamera += SetMainCam;
+            //PlayerController.SetPlayer += SetPlayer;
+            //PlayerController.SetCamera += SetMainCam;
         }
 
         private void OnDestroy()
         {
             PlayerController.currentScore -= OnScoreChange;
             PlayerController.IsPlayerVisible -= IsPlayerVisible;
-            PlayerController.SetPlayer -= SetPlayer;
-            PlayerController.SetCamera -= SetMainCam;
+            //PlayerController.SetPlayer -= SetPlayer;
+            //PlayerController.SetCamera -= SetMainCam;
         }
 
         private void Start()
@@ -73,28 +73,28 @@ namespace Infinite_story
             SaveFileEvent?.Invoke();
             SendTimeToSaveFile?.Invoke(_timeText);
         }
-
+        /*
         void SetMainCam(Camera cam)
         {
             _mainCam = cam;
         }
-
+        */
         void HideMainMenu()
         {
             MainMenu.SetActive(false);
             MainMenuButton.gameObject.SetActive(true);
             Time.timeScale = _timeScale;
         }
-
+        /*
         void SetPlayer(GameObject Player)
         {
             _player = Player;
         }
-
+        */
 
         void LoadFile()
         {
-            LoadFileAction?.Invoke();
+                LoadFileAction?.Invoke();
         }
 
         void GameExit()

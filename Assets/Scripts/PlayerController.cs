@@ -96,10 +96,12 @@ namespace Infinite_story
             // подписываемся на события
             BonusAction.BonusesAction += OnScoreChanged;
             ColliderWatchdog.SpawnColliderHit += OnRoadSpawn;
-            LoadGame.SetScore += OnScoreChanged;
+            LoadGame.SetScore += SetScoreAtLoad;
             LoadGame.SetScrollSpeed += OnScrollSpeedChange;
+            LoadGame.SetPlayerPos += SetPlayerPos;
             DisableForceAtStack.DisableForce += DisableForce;
             DisableForceAtStack.EnableForce += EnableForce;
+
         }
 
         private void OnDestroy()
@@ -109,8 +111,9 @@ namespace Infinite_story
             BonusAction.BonusesAction -= OnScoreChanged;
             _floorCtl.OnDestroy();
             ColliderWatchdog.SpawnColliderHit -= OnRoadSpawn;
-            LoadGame.SetScore -= OnScoreChanged;
+            LoadGame.SetScore -= SetScoreAtLoad;
             LoadGame.SetScrollSpeed -= OnScrollSpeedChange;
+            LoadGame.SetPlayerPos -= SetPlayerPos;
             DisableForceAtStack.DisableForce -= DisableForce;
             DisableForceAtStack.EnableForce -= EnableForce;
         }
@@ -156,6 +159,16 @@ namespace Infinite_story
             currentScore?.Invoke(Score);
         }
 
+        void SetScoreAtLoad(int newScore)
+        {
+            Score = newScore;
+            currentScore?.Invoke(Score);
+        }
+
+        void SetPlayerPos(Vector3 pos)
+        {
+            Player.transform.position = pos;
+        }
 
         void Start()
         {

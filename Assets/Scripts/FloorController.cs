@@ -17,7 +17,7 @@ namespace Infinite_story
 
         private List<GameObject> _roadList;
         private Spawner _spawner;
-        private int SpawnCounter = 0;
+        //private int SpawnCounter = 0;
         private Vector3 _startPos;
 
         private int _gridSizeX;
@@ -190,6 +190,7 @@ namespace Infinite_story
                 {
                     GameObject NewParent = new GameObject();
                     NewParent.transform.position = LoadedObj.transform.position;
+                    NewParent.tag = LoadedObj.tag;
                     // тут костыль
                     for(int i=0; i < LoadedObj.transform.childCount; i++)
                     {

@@ -13,6 +13,7 @@ namespace Infinite_story
         public static Action<List<GameObject>> OnSaveFileReaded;
         public static Action<int> SetScore;
         public static Action<int> SetScrollSpeed;
+        public static Action<Vector3> SetPlayerPos;
        
         public LoadGame(string filename)
         {
@@ -119,16 +120,26 @@ namespace Infinite_story
             XmlNodeList GameInfoNodeList = doc.GetElementsByTagName("GameInfo");
             int GameScore = -1;
             int ScrollSpeed = -1;
-            for(int i = 0; i < GameInfoNodeList.Count; i++)
+            Vector3 PlayerPos = new Vector3();
+            for (int i = 0; i < GameInfoNodeList.Count; i++)
             {
                 XmlNode GameInfoNode = GameInfoNodeList.Item(i);
                 XmlAttribute GameInfoScore = (XmlAttribute)GameInfoNode.Attributes.GetNamedItem("Score");
                 XmlAttribute GameinfoScrollSpeed = (XmlAttribute)GameInfoNode.Attributes.GetNamedItem("ScrollSpeed");
+                XmlAttribute PosX = (XmlAttribute)GameInfoNode.Attributes.GetNamedItem("PlayerX");
+                XmlAttribute PosY = (XmlAttribute)GameInfoNode.Attributes.GetNamedItem("PlayerY");
+                XmlAttribute PosZ = (XmlAttribute)GameInfoNode.Attributes.GetNamedItem("PlayerZ");
+                
+                float.TryParse(PosX?.Value, out PlayerPos.x);
+                float.TryParse(PosY?.Value, out PlayerPos.y);
+                float.TryParse(PosZ?.Value, out PlayerPos.z);
+
                 Int32.TryParse(GameInfoScore?.Value, out GameScore);
                 Int32.TryParse(GameinfoScrollSpeed?.Value, out ScrollSpeed);
             }
             if (GameScore > 0) SetScore?.Invoke(GameScore);
             if (ScrollSpeed > 0) SetScrollSpeed?.Invoke(ScrollSpeed);
+            SetPlayerPos?.Invoke(PlayerPos);
 
             OnSaveFileReaded?.Invoke(LoadedObjects);
         }
