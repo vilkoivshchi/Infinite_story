@@ -81,7 +81,19 @@ namespace Infinite_story
                         float.TryParse(BonusBlankY.Value, out BonusBlankPosY);
                         XmlAttribute BonusBlankZ = (XmlAttribute)ObjectRootNode.ChildNodes[j].Attributes.GetNamedItem("z");
                         float.TryParse(BonusBlankZ.Value, out BonusBlankPosZ);
+
+                        XmlAttribute BonusBlankRotX = (XmlAttribute)ObjectRootNode.ChildNodes[j].Attributes.GetNamedItem("RotX");
+                        XmlAttribute BonusBlankRotY = (XmlAttribute)ObjectRootNode.ChildNodes[j].Attributes.GetNamedItem("RotY");
+                        XmlAttribute BonusBlankRotZ = (XmlAttribute)ObjectRootNode.ChildNodes[j].Attributes.GetNamedItem("RotZ");
+
+                        Vector3 BonusBlankRotateVector = new Vector3();
+
+                        float.TryParse(BonusBlankRotX.Value, out BonusBlankRotateVector.x);
+                        float.TryParse(BonusBlankRotY.Value, out BonusBlankRotateVector.y);
+                        float.TryParse(BonusBlankRotZ.Value, out BonusBlankRotateVector.z);
+
                         BonusBlank.transform.position = new Vector3(BonusBlankPosX, BonusBlankPosY, BonusBlankPosZ);
+                        BonusBlank.transform.eulerAngles = BonusBlankRotateVector;
                         BonusBlank.transform.SetParent(RootGameObject.transform, true);
                     }
                 }

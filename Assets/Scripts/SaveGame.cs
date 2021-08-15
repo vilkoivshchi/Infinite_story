@@ -114,6 +114,9 @@ namespace Infinite_story
                         GameObjEl.SetAttribute("x", childTransform.position.x.ToString());
                         GameObjEl.SetAttribute("y", childTransform.position.y.ToString());
                         GameObjEl.SetAttribute("z", childTransform.position.z.ToString());
+                        GameObjEl.SetAttribute("RotX", childTransform.transform.localEulerAngles.x.ToString());
+                        GameObjEl.SetAttribute("RotY", childTransform.transform.localEulerAngles.y.ToString());
+                        GameObjEl.SetAttribute("RotZ", childTransform.transform.localEulerAngles.z.ToString());
 
                         NestObjElement.AppendChild(GameObjEl);
 

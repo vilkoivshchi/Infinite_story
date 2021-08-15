@@ -198,7 +198,7 @@ namespace Infinite_story
                         GameObject SpawnedLoadedBonus = _spawner.SpawnLoadedObject(LoadedObjChildTranform.gameObject, NewParent);
                         //GameObject.Destroy(LoadedObjChildTranform.gameObject);
                         //SpawnedLoadedBonus.transform.SetParent(NewParent.transform, true);
-                        SpawnedLoadedBonus.transform.localEulerAngles = new Vector3(-90, 0, 0);
+                        SpawnedLoadedBonus.transform.localEulerAngles = LoadedObjChildTranform.transform.localEulerAngles;
                         
                     }
                     GameObject.Destroy(LoadedObj);

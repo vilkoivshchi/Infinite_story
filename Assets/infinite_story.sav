@@ -1,85 +1,88 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SaveGame>
   <Roads>
-    <Road tag="Road" Name="Road(Clone)" x="0" y="0" z="-64,62041" />
-    <Road tag="Road" Name="Road(Clone)" x="0" y="0" z="135,3781" />
+    <Road tag="Road" Name="Road(Clone)" x="0" y="0" z="-43,02813" />
+    <Road tag="Road" Name="Road(Clone)" x="0" y="0" z="156,9706" />
   </Roads>
   <RootObjects>
-    <RootObject tag="Bonuses" x="0" y="0" z="-334,2018">
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-3,333333" y="0,8753705" z="-134,6211" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-1,666667" y="0,8753705" z="-44,62115" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="1,666667" y="0,8753705" z="25,37885" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-3,333333" y="0,8753705" z="-74,62115" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-3,333333" y="0,8753705" z="-84,62115" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="3,333333" y="0,8753705" z="-114,6212" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8753705" z="-34,62115" />
-      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="-124,6211" />
-      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-3,333333" y="0,8000001" z="-64,62115" />
-      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="1,666667" y="0,8000001" z="-144,6211" />
-      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="-164,6211" />
-      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="15,37885" />
-      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="1,666667" y="0,8000001" z="-44,62115" />
-      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-3,333333" y="0,8000001" z="-164,6211" />
-      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-3,333333" y="0,8000001" z="-94,62115" />
-      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="1,666667" y="0,8000001" z="-124,6211" />
-      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="1,666667" y="0,8000001" z="-14,62115" />
-      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-3,333333" y="0,8000001" z="-114,6212" />
-      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-3,333333" y="0,8000001" z="-144,6211" />
-      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="-54,62115" />
-      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="3,333333" y="0,8000001" z="-154,6211" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="3,333333" y="1,073774" z="-44,62115" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-3,333333" y="1,073774" z="-54,62115" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,666667" y="1,073774" z="-4,621155" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="1,666667" y="1,073774" z="-34,62115" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,192093E-07" y="1,073774" z="-44,62115" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,666667" y="1,073774" z="-134,6211" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-3,333333" y="1,073774" z="15,37885" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="3,333333" y="1,073774" z="-64,62115" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-3,333333" y="1,073774" z="-4,621155" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="3,333333" y="1,073774" z="-24,62115" />
+    <RootObject tag="Bonuses" x="0" y="0" z="-312,6017">
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="3,333333" y="0,8753705" z="-63,02859" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-1,666667" y="0,8753705" z="-93,02859" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-3,333333" y="0,8753705" z="-23,02859" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="3,333333" y="0,8753705" z="-73,02859" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="3,333333" y="0,8753705" z="-33,02859" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="3,333333" y="0,8753705" z="-13,02859" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="3,333333" y="0,8753705" z="-43,02859" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8753705" z="36,97141" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-1,666667" y="0,8753705" z="36,97141" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="3,333333" y="0,8000001" z="-23,02859" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="1,666667" y="0,8000001" z="26,97141" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="3,333333" y="0,8000001" z="36,97141" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-3,333333" y="0,8000001" z="-143,0286" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-3,333333" y="0,8000001" z="-103,0286" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="6,971405" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="6,971405" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="-133,0286" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="26,97141" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="-33,02859" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-3,333333" y="0,8000001" z="-83,02859" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="-23,02859" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-3,333333" y="0,8000001" z="-113,0286" RotX="90" RotY="0" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="3,333333" y="0,8000001" z="46,97141" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="-43,02859" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,666667" y="1,073774" z="-83,02859" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,666667" y="1,073774" z="-123,0286" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="1,666667" y="1,073774" z="46,97141" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-3,333333" y="1,073774" z="-13,02859" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,666667" y="1,073774" z="-113,0286" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,192093E-07" y="1,073774" z="-13,02859" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-3,333333" y="1,073774" z="16,97141" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="1,666667" y="1,073774" z="36,97141" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="1,666667" y="1,073774" z="-33,02859" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="1,666667" y="1,073774" z="-3,028595" RotX="270" RotY="45" RotZ="0" />
     </RootObject>
-    <RootObject tag="Bonuses" x="0" y="0" z="-133,7998">
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-3,333333" y="0,8753705" z="95,37961" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8753705" z="175,3796" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="3,333333" y="0,8753705" z="105,3796" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="3,333333" y="0,8753705" z="125,3796" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-3,333333" y="0,8753705" z="155,3796" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="1,666667" y="0,8753705" z="205,3796" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="1,666667" y="0,8753705" z="65,37961" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8753705" z="95,37961" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8753705" z="155,3796" />
-      <GameObject Name="Shit(Clone)" tag="Bonuses" x="3,333333" y="0,8753705" z="115,3796" />
-      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="135,3796" />
-      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="85,37961" />
-      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="135,3796" />
-      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="3,333333" y="0,8000001" z="35,37961" />
-      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="35,37961" />
-      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="1,666667" y="0,8000001" z="45,37961" />
-      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="145,3796" />
-      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="125,3796" />
-      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-3,333333" y="0,8000001" z="205,3796" />
-      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="1,666667" y="0,8000001" z="105,3796" />
-      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="195,3796" />
-      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="1,666667" y="0,8000001" z="55,37961" />
-      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-3,333333" y="0,8000001" z="185,3796" />
-      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="215,3796" />
-      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="105,3796" />
-      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="3,333333" y="0,8000001" z="155,3796" />
-      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="1,666667" y="0,8000001" z="135,3796" />
-      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="3,333333" y="0,8000001" z="225,3796" />
-      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="3,333333" y="0,8000001" z="205,3796" />
-      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="185,3796" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,666667" y="1,073774" z="115,3796" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="3,333333" y="1,073774" z="45,37961" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,666667" y="1,073774" z="55,37961" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="1,666667" y="1,073774" z="225,3796" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="1,666667" y="1,073774" z="115,3796" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="1,666667" y="1,073774" z="35,37961" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-3,333333" y="1,073774" z="45,37961" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,192093E-07" y="1,073774" z="55,37961" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="1,666667" y="1,073774" z="75,37961" />
-      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="3,333333" y="1,073774" z="95,37961" />
+    <RootObject tag="Bonuses" x="0" y="0" z="-112,1998">
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-3,333333" y="0,8753705" z="66,97197" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-1,666667" y="0,8753705" z="216,972" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="1,666667" y="0,8753705" z="206,972" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="1,666667" y="0,8753705" z="156,972" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-3,333333" y="0,8753705" z="226,972" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-1,666667" y="0,8753705" z="126,972" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="1,666667" y="0,8753705" z="146,972" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8753705" z="236,972" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="3,333333" y="0,8753705" z="106,972" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Shit(Clone)" tag="Bonuses" x="-3,333333" y="0,8753705" z="166,972" RotX="270,0198" RotY="0" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="3,333333" y="0,8000001" z="246,972" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="1,666667" y="0,8000001" z="116,972" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="206,972" RotX="90" RotY="0" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="96,97197" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="196,972" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="3,333333" y="0,8000001" z="176,972" RotX="90" RotY="0" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="76,97197" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="1,666667" y="0,8000001" z="226,972" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="3,333333" y="0,8000001" z="206,972" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="166,972" RotX="90" RotY="0" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="246,972" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-1,666667" y="0,8000001" z="236,972" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="-3,333333" y="0,8000001" z="126,972" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="3,333333" y="0,8000001" z="86,97197" RotX="90" RotY="0" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="1,666667" y="0,8000001" z="126,972" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="1,666667" y="0,8000001" z="186,972" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Blue(Clone)" tag="Bonuses" x="3,333333" y="0,8000001" z="116,972" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="66,97197" RotX="90" RotY="0" RotZ="0" />
+      <GameObject Name="Candy-Light-green(Clone)" tag="Bonuses" x="-1,192093E-07" y="0,8000001" z="226,972" RotX="270,0198" RotY="-3,733867E-05" RotZ="0" />
+      <GameObject Name="Candy-Red-Orange(Clone)" tag="Bonuses" x="-3,333333" y="0,8000001" z="216,972" RotX="90" RotY="0" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,666667" y="1,073774" z="76,97197" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,192093E-07" y="1,073774" z="106,972" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,666667" y="1,073774" z="66,97197" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="1,666667" y="1,073774" z="86,97197" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-3,333333" y="1,073774" z="246,972" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="1,666667" y="1,073774" z="106,972" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,666667" y="1,073774" z="166,972" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,192093E-07" y="1,073774" z="156,972" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,192093E-07" y="1,073774" z="216,972" RotX="270" RotY="45" RotZ="0" />
+      <GameObject Name="Obstacle-Concrete-Pyramide(Clone)" tag="Bonuses" x="-1,192093E-07" y="1,073774" z="56,97197" RotX="270" RotY="45" RotZ="0" />
     </RootObject>
   </RootObjects>
-  <GameInfo ScrollSpeed="30" Score="385" PlayerX="-0,3154318" PlayerY="6,290566" PlayerZ="-19,31" />
+  <GameInfo ScrollSpeed="30" Score="514" PlayerX="1,302126" PlayerY="1,246038" PlayerZ="-19,31" />
 </SaveGame>
