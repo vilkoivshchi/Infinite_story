@@ -68,9 +68,7 @@ namespace Infinite_story
         public List<GameObject> Modificators;
         public List<GameObject> Traps;
         public GameObject RoadObj;
-        //private float _scrollSpeed = 0;
 
-        //public static Action<List<GameObject>> SaveFileDelegate;
         public static System.Action OnSpawnBonuses;
 
         private List<Vector3> _spawnCoords;
@@ -83,17 +81,10 @@ namespace Infinite_story
 
         public void Awake()
         {
-            //RootObjectsList = new List<GameObject>();
-            // Событие сохранения игры
-            //UIController.SaveFileEvent += OnSaveFile;
-            //PlayerController.NewSpeed += OnSpeedChanged;
-            // удаляем бонусы при спауне игрока
-            //PlayerController.RemoveBonusesAtRespawn += RmBonuses;
         }
 
         public void OnDestroy()
         {
-            //UIController.SaveFileEvent -= OnSaveFile;
         }
 
         
@@ -119,7 +110,6 @@ namespace Infinite_story
             {
                 RootBonusesObjects.tag = Traps[0].gameObject.tag;
             }
-            //_bounds = FloorScroller.Bounds;
             _bounds = RoadObj.GetComponent<BoxCollider>();
 
             // начало координат BoxCollider у пола
@@ -175,7 +165,8 @@ namespace Infinite_story
                         GameObject bonusInstance = GameObject.Instantiate(bonusesList[BonusesTypeNum], parent.transform, true);
                         Renderer instanceRend = bonusInstance.GetComponent<Renderer>();
                         bonusInstance.transform.position = spawnInstanceCoords;
-                        bonusInstance.transform.position = new Vector3(bonusInstance.transform.position.x,
+                        bonusInstance.transform.position = new Vector3(
+                            bonusInstance.transform.position.x,
                         bonusInstance.transform.position.y + instanceRend.bounds.extents.y,
                         bonusInstance.transform.position.z);
                         // удаляем координаты из списка после спавна, чтобы на этом месте ещё что-то не появилось

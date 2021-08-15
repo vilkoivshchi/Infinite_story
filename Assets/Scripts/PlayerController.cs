@@ -36,7 +36,6 @@ namespace Infinite_story
         [Header("Bonuses settings")]
         // размер сетки, на которую поделится площадка. В каждом узле сетки сможет появлятся бонус
 
-        
         public int GridSizeX = 6;
         public int GridSizeZ = 20;
 
@@ -50,8 +49,15 @@ namespace Infinite_story
         public List<GameObject> Modificators;
         public List<GameObject> Traps;
 
+        [Header("Tags settings")]
+        [Tooltip("Tag for road. Need for save/load game")] public string RoadTag = "Road";
+        [Tooltip("Tag for bonuses. Need for save/load game")] public string BonusesTag = "Bonuses";
+
+        public static Action<string> SetRoadTag;
+        public static Action<string> SetBonusesTag;
+
         // очки не могут быть меньше 0
-        [HideInInspector]public int score
+        [HideInInspector]public int Score
             
         { 
             get { return _score; } 
@@ -83,14 +89,17 @@ namespace Infinite_story
         // событие будет сообщать, если игрок за пределами экрана
         public static Action<bool> IsPlayerVisible;
 
+        private bool _playerMustBePushed = true;
+
         private void Awake()
         {
             // подписываемся на события
             BonusAction.BonusesAction += OnScoreChanged;
             ColliderWatchdog.SpawnColliderHit += OnRoadSpawn;
-            LoadGame.OnSaveFileReaded += OnGameLoaded;
             LoadGame.SetScore += OnScoreChanged;
             LoadGame.SetScrollSpeed += OnScrollSpeedChange;
+            DisableForceAtStack.DisableForce += DisableForce;
+            DisableForceAtStack.EnableForce += EnableForce;
         }
 
         private void OnDestroy()
@@ -100,52 +109,22 @@ namespace Infinite_story
             BonusAction.BonusesAction -= OnScoreChanged;
             _floorCtl.OnDestroy();
             ColliderWatchdog.SpawnColliderHit -= OnRoadSpawn;
-            LoadGame.OnSaveFileReaded -= OnGameLoaded;
             LoadGame.SetScore -= OnScoreChanged;
             LoadGame.SetScrollSpeed -= OnScrollSpeedChange;
+            DisableForceAtStack.DisableForce -= DisableForce;
+            DisableForceAtStack.EnableForce -= EnableForce;
         }
 
-        private void OnGameLoaded(List<GameObject> LoadedObjects)
+        private void DisableForce()
         {
-            // здесь сперва найдем теги, которые нужно искать на сцене и удалять объекты с ними
-            List<string> LoadedObjTags = new List<string>();
-            foreach(GameObject LoadedObj in LoadedObjects)
-            {
-                bool TagFinded = LoadedObjTags.Contains(LoadedObj.tag);
-                if (!TagFinded)
-                {
-                    LoadedObjTags.Add(LoadedObj.tag);
-                }
-                // выключенные объекты не входят в поиск по тегу
-                LoadedObj.SetActive(false);
-            }
-            if(LoadedObjTags.Count > 0)
-            {
-                foreach(string ObjTag in LoadedObjTags)
-                {
-                    GameObject[] FindedObjects = GameObject.FindGameObjectsWithTag(ObjTag);
-                    if(FindedObjects.Length > 0)
-                    {
-                        foreach(GameObject obj in FindedObjects)
-                        {
-                            Destroy(obj);
-                        }
-                    }
-                }
-            }
-
-            List<GameObject> LoadedRoadsList = new List<GameObject>();
-            foreach (GameObject LoadedObj in LoadedObjects)
-            {
-                LoadedObj.SetActive(true);
-                if (LoadedObj.CompareTag("Road")) LoadedRoadsList.Add(LoadedObj);
-            }
-            
-            _floorCtl.OnGameLoad(LoadedRoadsList);
-            LoadedRoadsList.Clear();
-
+            _playerMustBePushed = false;
         }
 
+        private void EnableForce()
+        {
+            _playerMustBePushed = true;
+        }
+      
         /// <summary>
         /// Grow speed after some road respawns
         /// </summary>
@@ -173,21 +152,21 @@ namespace Infinite_story
         
         void OnScoreChanged(int newScore)
         {
-            score += newScore;
-            currentScore?.Invoke(score);
+            Score += newScore;
+            currentScore?.Invoke(Score);
         }
 
 
         void Start()
         {
-            score = 0;
+            Score = 0;
 #if UNITY_EDITOR
             sensivity /= 3;
 #endif
             _oldScrollSpeed = ScrollSpeed;
             _rb = GetComponent<Rigidbody>();
             _playerCollider = Player.GetComponent<SphereCollider>();
-            currentScore?.Invoke(score);
+            currentScore?.Invoke(Score);
             //Спавним полы
             
             _floorCtl = new FloorController(
@@ -212,11 +191,16 @@ namespace Infinite_story
             CamCtl.Start();
             SetPlayer?.Invoke(Player);
             SetCamera?.Invoke(Cam);
+            SetRoadTag?.Invoke(RoadTag);
+            SetBonusesTag?.Invoke(BonusesTag);
         }
 
         private void FixedUpdate()
         {
-            _rb.AddForce(Vector3.forward * Mathf.Pow(ScrollSpeed, 2));
+            if (_playerMustBePushed)
+            {
+                _rb.AddForce(Vector3.forward * Mathf.Pow(ScrollSpeed, 2));
+            }
             //_rb.AddTorque(Vector3.right * _scrollSpeed);
             _floorCtl.Update(ScrollSpeed);
         }
@@ -277,7 +261,7 @@ namespace Infinite_story
         // рисуем fps
         private void OnGUI()
         {
-            GUI.Label(new Rect(Screen.width - 200, 200, 100, 100), $"FPS: {_fps} in {this.GetType()}, _score: {score}\n" +
+            GUI.Label(new Rect(Screen.width - 200, 200, 100, 100), $"FPS: {_fps} in {this.GetType()}, _score: {Score}\n" +
                 $"ScrollSpeed: {ScrollSpeed}" );
 
         }

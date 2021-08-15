@@ -717,6 +717,8 @@ MonoBehaviour:
   Modificators: []
   Traps:
   - {fileID: 7494150092614142223, guid: 1e8840edc09d2e448981889e56e6f656, type: 3}
+  RoadTag: Road
+  BonusesTag: Bonuses
 --- !u!1 &398393289
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,9 @@ using System.Text.RegularExpressions;
 
 namespace Infinite_story
 {
-    
+    /// <summary>
+    /// Spawn prefab
+    /// </summary>
     public class Spawner
     {
         public GameObject RoadPrefab;
@@ -24,21 +26,14 @@ namespace Infinite_story
 */
         public void Start()
         {
-            if (File.Exists(RoadPrefabPath))
-            {
                 RoadPrefab = (GameObject)Resources.Load(RoadPrefabShortPath);
                 if(RoadPrefab == null)
                 {
                     Debug.LogError($"{RoadPrefabShortPath} is null!");
                 }
-            }
-            else
-            {
-                Debug.LogError($"Не могу найти {RoadPrefabPath}");
-            }
         }
 
-        public GameObject SpawnLoadedObject(GameObject LoadedBlank)
+        public GameObject SpawnLoadedObject(GameObject LoadedBlank, GameObject Parent = null)
         {
             string LoadedPrefabName = Regex.Replace(LoadedBlank.name, @"\(.+\)", String.Empty);
             
@@ -49,11 +44,23 @@ namespace Infinite_story
                 GameObject LoadedPrefab = (GameObject)Resources.Load(LoadedPrefabName);
                 if (LoadedPrefab != null)
                 {
-                    GameObject LoadedSpawnedRoad = GameObject.Instantiate(LoadedPrefab, new Vector3(
+                    if(Parent == null)
+                    {
+                        GameObject LoadedSpawnedRoad = GameObject.Instantiate(LoadedPrefab, new Vector3(
                         LoadedBlank.transform.position.x,
                         LoadedBlank.transform.position.y,
                         LoadedBlank.transform.position.z), Quaternion.identity);
-                    return LoadedSpawnedRoad;
+                        return LoadedSpawnedRoad;
+                    }
+                    else
+                    {
+                        GameObject LoadedSpawnedRoad = GameObject.Instantiate(LoadedPrefab, new Vector3(
+                        LoadedBlank.transform.position.x,
+                        LoadedBlank.transform.position.y,
+                        LoadedBlank.transform.position.z), Quaternion.identity, Parent.transform);
+                        return LoadedSpawnedRoad;
+                    }
+                    
                 }
                 else
                 {

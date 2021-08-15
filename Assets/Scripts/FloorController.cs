@@ -7,6 +7,14 @@ namespace Infinite_story
     public class FloorController
     {
         public GameObject SpawnedRoad;
+
+        // события для сохраниеня 
+        public static Action<List<GameObject>> SetRoads;
+        public static Action<List<BonusesSpawner>> SetBonuses;
+        public static Action Save;
+
+        public int ScrollSpeed;
+
         private List<GameObject> _roadList;
         private Spawner _spawner;
         private int SpawnCounter = 0;
@@ -27,21 +35,15 @@ namespace Infinite_story
 
         private BonusesSpawner _bonusesSpawner;
         private List<BonusesSpawner> _bsList;
-        
-        // события для сохраниеня 
-        public static Action<List<GameObject>> SetRoads;
-        public static Action<List<BonusesSpawner>> SetBonuses;
-        public static Action Save;
 
-        public int ScrollSpeed;
-     
+        private string _roadTag, _bonusesTag;
+
+        
         // Спаун без бонусов
         public FloorController(Vector3 StartPos)
         {
             _startPos = StartPos;
         }
-
-
         
         public FloorController(
             Vector3 StartPos, 
@@ -70,9 +72,6 @@ namespace Infinite_story
             _gridSizeZ = GridSizeZ;
 
         }
-
-
-
 
         private void SpawnRoad()
         {
@@ -110,16 +109,15 @@ namespace Infinite_story
                 GameObject.Destroy(_bsList[0].RootBonusesObjects);
                 _bsList.Remove(_bsList[0]);
             }
-            
-
         }
-
 
         public void Awake()
         {
             ColliderWatchdog.SpawnColliderHit += SpawnRoad;
             UIController.SaveFileEvent += SaveFile;
-            
+            PlayerController.SetBonusesTag += ReadBonusesTag;
+            PlayerController.SetRoadTag += ReadRoadTag;
+            LoadGame.OnSaveFileReaded += OnGameLoaded;
         }
 
         public void OnDestroy()
@@ -127,8 +125,20 @@ namespace Infinite_story
             ColliderWatchdog.SpawnColliderHit -= SpawnRoad;
             UIController.SaveFileEvent -= SaveFile;
             _bonusesSpawner?.OnDestroy();
+            PlayerController.SetBonusesTag -= ReadBonusesTag;
+            PlayerController.SetRoadTag -= ReadRoadTag;
+            LoadGame.OnSaveFileReaded -= OnGameLoaded;
         }
 
+        private void ReadRoadTag(string RoadTag)
+        {
+            _roadTag = RoadTag;
+        }
+
+        private void ReadBonusesTag(string BonusesTag)
+        {
+            _bonusesTag = BonusesTag;
+        }
 
         public void Start()
         {
@@ -142,26 +152,96 @@ namespace Infinite_story
             _roadList.Add(Road);
             _bsList = new List<BonusesSpawner>();
         }
+
+        private void SeekAndDestroy(string Tag)
+        {
+            GameObject[] FoundedObj = GameObject.FindGameObjectsWithTag(Tag);
+            if(FoundedObj.Length > 0)
+            {
+                foreach(GameObject obj in FoundedObj)
+                {
+                    GameObject.Destroy(obj);
+                }
+            }
+        }
+        /// <summary>
+        /// Get preloaded objects, spawning it and place to define list
+        /// </summary>
+        /// <param name="SourceList"></param>
+        /// <param name="DestList"></param>
+        private void SpawnLoadedObject(List<GameObject> SourceList, List<GameObject> DestList)
+        {
+            foreach (GameObject LoadedObj in SourceList)
+            {
+                if(LoadedObj.transform.childCount == 0)
+                {
+                    GameObject SpawnedLoadedRoad = _spawner.SpawnLoadedObject(LoadedObj);
+                    if (SpawnedLoadedRoad != null)
+                    {
+                        DestList.Add(SpawnedLoadedRoad);
+                        GameObject.Destroy(LoadedObj);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"DestList is empty!");
+                    }
+                }
+                else
+                {
+                    GameObject NewParent = new GameObject();
+                    NewParent.transform.position = LoadedObj.transform.position;
+                    // тут костыль
+                    for(int i=0; i < LoadedObj.transform.childCount; i++)
+                    {
+                        Transform LoadedObjChildTranform = LoadedObj.transform.GetChild(i);
+                        GameObject SpawnedLoadedBonus = _spawner.SpawnLoadedObject(LoadedObjChildTranform.gameObject, NewParent);
+                        //GameObject.Destroy(LoadedObjChildTranform.gameObject);
+                        //SpawnedLoadedBonus.transform.SetParent(NewParent.transform, true);
+                        SpawnedLoadedBonus.transform.localEulerAngles = new Vector3(-90, 0, 0);
+                        
+                    }
+                    GameObject.Destroy(LoadedObj);
+                    DestList.Add(NewParent);
+                }
+                
+
+            }
+        }
         /// <summary>
         /// передаёт предзагруженные объекты и спауних их в реальные
         /// </summary>
         /// <param name="LoadedList"></param>
-        public void OnGameLoad(List<GameObject> LoadedList)
+        public void OnGameLoaded(List<GameObject> LoadedList)
         {
+            List<GameObject> LoadedRoadsList = new List<GameObject>();
+            List<GameObject> LoadedBonusesList = new List<GameObject>();
+
+            foreach(GameObject LoadedObj in LoadedList)
+            {
+                if (LoadedObj.CompareTag(_roadTag))
+                {
+                    LoadedRoadsList.Add(LoadedObj);
+                    LoadedObj.SetActive(false);
+                }
+                else if (LoadedObj.CompareTag(_bonusesTag))
+                {
+                    LoadedBonusesList.Add(LoadedObj);
+                    LoadedObj.SetActive(false);
+                }
+            }
+            SeekAndDestroy(_roadTag);
+            SeekAndDestroy(_bonusesTag);
+
             _roadList.Clear();
             _bsList.Clear();
-            foreach(GameObject LoadedRoad in LoadedList)
+
+            List<GameObject> SpawnedLoadedBonuses = new List<GameObject>();
+            SpawnLoadedObject(LoadedRoadsList, _roadList);
+            SpawnLoadedObject(LoadedBonusesList, SpawnedLoadedBonuses);
+            foreach(GameObject SpawnedBonus in SpawnedLoadedBonuses)
             {
-                GameObject SpawnedLoadedRoad = _spawner.SpawnLoadedObject(LoadedRoad);
-                if(SpawnedLoadedRoad != null)
-                {
-                    _roadList.Add(SpawnedLoadedRoad);
-                    GameObject.Destroy(LoadedRoad);
-                }
-                else
-                {
-                    Debug.LogWarning("_roadList is empty!");
-                }
+                _bonusesSpawner = new BonusesSpawner(SpawnedBonus);
+                _bsList.Add(_bonusesSpawner);
             }
         }
 
