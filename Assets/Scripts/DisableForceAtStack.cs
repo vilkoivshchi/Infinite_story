@@ -1,24 +1,28 @@
 ﻿using System;
 using UnityEngine;
 
-public class DisableForceAtStack : MonoBehaviour
+namespace Infinite_story 
+    
 {
-    public static Action DisableForce;
-    public static Action EnableForce;
-
-    private void OnTriggerEnter(Collider other)
+    public class DisableForceAtStack : MonoBehaviour
     {
-        if (other.CompareTag("Player"))
+        public static Action DisableForce;
+        public static Action EnableForce;
+
+        private void OnTriggerEnter(Collider other)
         {
-            DisableForce?.Invoke();
+            if (other.CompareTag("Player"))
+            {
+                DisableForce?.Invoke();
+            }
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        private void OnTriggerExit(Collider other)
         {
-            EnableForce?.Invoke();
+            if (other.CompareTag("Player"))
+            {
+                EnableForce?.Invoke();
+            }
         }
     }
 }

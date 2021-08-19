@@ -91,7 +91,7 @@ namespace Infinite_story
 
         private bool _playerMustBePushed = true;
 
-        private PreloadPrefabs _preloadPrefabs;
+        
 
         private void Awake()
         {
@@ -196,9 +196,6 @@ namespace Infinite_story
                 TrapNumber,
                 GridSizeX,
                 GridSizeZ);
-
-            _preloadPrefabs = new PreloadPrefabs();
-            List<GameObject> Prespawned = _preloadPrefabs.LoadPrefab(GoodBonuses);
 
             _floorCtl.Awake();
             _floorCtl.Start();
