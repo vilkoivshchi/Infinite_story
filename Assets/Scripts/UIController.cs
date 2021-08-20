@@ -99,7 +99,11 @@ namespace Infinite_story
 
         void GameExit()
         {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
             Application.Quit();
+#endif
         }
 
         void NewGame()

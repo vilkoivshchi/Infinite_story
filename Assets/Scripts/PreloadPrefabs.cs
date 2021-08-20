@@ -5,32 +5,36 @@ namespace Infinite_story
 {
     public class PreloadPrefabs
     {
-        private string PrefabPath = @"Prefabs/";
+        //private readonly string _prefabPath = @"Prefabs/";
+        private readonly string _prefabPath;
         
-        public PreloadPrefabs()
+        public PreloadPrefabs(string path)
         {
-
+            _prefabPath = path;
         }
 
         
-        public List<GameObject> LoadPrefab(List<GameObject> BonusesList, GameObject Parent = null)
+        public Dictionary<int, GameObject> LoadPrefab(List<GameObject> BonusesList)
         {
             if (BonusesList.Count > 0)
             {
-                List<GameObject> Prefabs = new List<GameObject>();
+                Dictionary<int, GameObject> Prefabs = new Dictionary<int, GameObject>();
                 foreach (GameObject go in BonusesList)
                 {
                     //Debug.Log(go.name);
-                    string PrefabName = PrefabPath + go.name;
+                    string PrefabName = go.name;
+                    string PrefabPath = _prefabPath + "/" + PrefabName;
+                    int PrefabNameHash = PrefabName.GetHashCode();
                     
-                    GameObject PreloadedPrefab = (GameObject)Resources.Load(PrefabName);
+                    GameObject PreloadedPrefab = (GameObject)Resources.Load(PrefabPath);
+                    
                     if (PreloadedPrefab == null)
                     {
-                        Debug.LogError($"{PrefabName} is null!");
+                        Debug.LogError($"{PrefabPath} is null!");
                     }
                     else
                     {
-                        Prefabs.Add(PreloadedPrefab);
+                        Prefabs.Add(PrefabNameHash, PreloadedPrefab);
                     }
                 }
                 return Prefabs;

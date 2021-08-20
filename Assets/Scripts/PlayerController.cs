@@ -52,9 +52,13 @@ namespace Infinite_story
         [Header("Tags settings")]
         [Tooltip("Tag for road. Need for save/load game")] public string RoadTag = "Road";
         [Tooltip("Tag for bonuses. Need for save/load game")] public string BonusesTag = "Bonuses";
+        [Header("Prefabs settings")]
+        [Tooltip("Prefab path")] public string PrefabPath = "Prefabs";
 
         public static Action<string> SetRoadTag;
         public static Action<string> SetBonusesTag;
+
+        private PreloadPrefabs PrefabsLoader;
 
         // очки не могут быть меньше 0
         [HideInInspector]public int Score
@@ -91,7 +95,8 @@ namespace Infinite_story
 
         private bool _playerMustBePushed = true;
 
-        
+        private List<GameObject> BonusesObjList;
+        Dictionary<int, GameObject> PreloadedPrefabsList;
 
         private void Awake()
         {
@@ -172,6 +177,7 @@ namespace Infinite_story
             Player.transform.position = pos;
         }
 
+        
         void Start()
         {
             Score = 0;
@@ -199,6 +205,24 @@ namespace Infinite_story
 
             _floorCtl.Awake();
             _floorCtl.Start();
+
+            BonusesObjList = new List<GameObject>();
+            
+            if (GoodBonuses.Count > 0) BonusesObjList.AddRange(GoodBonuses);
+            if (BadBonuses.Count > 0) BonusesObjList.AddRange(BadBonuses);
+            if (Modificators.Count > 0) BonusesObjList.AddRange(Modificators);
+            if (Traps.Count > 0) BonusesObjList.AddRange(Traps);
+
+            PrefabsLoader = new PreloadPrefabs(PrefabPath);
+
+            PreloadedPrefabsList = PrefabsLoader.LoadPrefab(BonusesObjList);
+            if (PreloadedPrefabsList != null)
+            {
+                foreach(KeyValuePair <int, GameObject> kvp in PreloadedPrefabsList)
+                {
+                    Debug.Log($"hash: {kvp.Key}, name: {kvp.Value.name}");
+                }
+            }
             GameObject SpawnedRoad = _floorCtl.SpawnedRoad;
             NewSpeed?.Invoke(ScrollSpeed);
             // Спавним камеру
