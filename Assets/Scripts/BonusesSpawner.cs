@@ -79,16 +79,6 @@ namespace Infinite_story
         // Объект, к которому привязаны бонусы
         public GameObject RootBonusesObjects;
 
-        public void Awake()
-        {
-        }
-
-        public void OnDestroy()
-        {
-        }
-
-        
-
         public void SpawnBonuses()
         {
             // создаём новый GameObject, чтобы привязать к нему бонусы этого спавна

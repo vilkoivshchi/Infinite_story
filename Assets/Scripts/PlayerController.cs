@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace Infinite_story
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, ITestInterface<int>
     {
         [Header("Player setings")]
         // сила прыжка
         public float jumpForce = 5.0f;
-        
+
         [Range(1f, 10f)] public float sensivity = 1f;
-        
+
         public static Action<int> currentScore { get; set; }
         public static Action<int> NewSpeed;
 
@@ -23,9 +23,9 @@ namespace Infinite_story
         public static Action<Camera> SetCamera;
         // здесь храним счёт
         [Header("Floor accel by time")]
-        [Tooltip("How much roads must be spawned before speed grow")]public int FloorAccelOver = 0;
-        [Tooltip("How much should the scrolling speed of the road increase")]public int FloorAccelStep = 0;
-        [Tooltip("Scroll speed limit")]public int FloorAccelLimit = 0;
+        [Tooltip("How much roads must be spawned before speed grow")] public int FloorAccelOver = 0;
+        [Tooltip("How much should the scrolling speed of the road increase")] public int FloorAccelStep = 0;
+        [Tooltip("Scroll speed limit")] public int FloorAccelLimit = 0;
 
         [Header("Floor Settings")]
         public int ScrollSpeed = 18;
@@ -61,18 +61,18 @@ namespace Infinite_story
         private PreloadPrefabs PrefabsLoader;
 
         // очки не могут быть меньше 0
-        [HideInInspector]public int Score
-            
-        { 
-            get { return _score; } 
-            set 
+        public int Score
+
+        {
+            get { return _score; }
+            set
             {
                 _score = value;
                 if (_score < 0)
                 {
                     _score = 0;
                 };
-            } 
+            }
         }
         private int _score;
         private Rigidbody _rb;
@@ -81,11 +81,11 @@ namespace Infinite_story
         private FloorController _floorCtl;
         // переменная для управления игроком
         private float _deltaX = 0;
-        
-        
+
+
         // FPS для дебага
         private int _fps = 0;
-        
+
         private SphereCollider _playerCollider;
         private int _BonusesSpawnCounter = 0;
 
@@ -98,24 +98,27 @@ namespace Infinite_story
         private List<GameObject> BonusesObjList;
         Dictionary<int, GameObject> PreloadedPrefabsList;
 
+        public event Action<int> MyTestEvent = delegate (int f) { };
+        TestScript ts;
+
         private void Awake()
         {
             // подписываемся на события
-            BonusAction.BonusesAction += OnScoreChanged;
+            //BonusAction.BonusesAction += OnScoreChanged;
+            
             ColliderWatchdog.SpawnColliderHit += OnRoadSpawn;
             LoadGame.SetScore += SetScoreAtLoad;
             LoadGame.SetScrollSpeed += OnScrollSpeedChange;
             LoadGame.SetPlayerPos += SetPlayerPos;
             DisableForceAtStack.DisableForce += DisableForce;
             DisableForceAtStack.EnableForce += EnableForce;
-
         }
 
         private void OnDestroy()
         {
             // отписываемся от событий при выгрузке сцены
 
-            BonusAction.BonusesAction -= OnScoreChanged;
+            //BonusAction.BonusesAction -= OnScoreChanged;
             _floorCtl.OnDestroy();
             ColliderWatchdog.SpawnColliderHit -= OnRoadSpawn;
             LoadGame.SetScore -= SetScoreAtLoad;
@@ -143,26 +146,37 @@ namespace Infinite_story
             _BonusesSpawnCounter++;
             if (FloorAccelOver > 0 && _BonusesSpawnCounter % FloorAccelOver == 0 && ScrollSpeed < FloorAccelLimit)
             {
-                /*
-                if(FloorAccelLimit < ScrollSpeed)
-                {
-                    ScrollSpeed = FloorAccelLimit;
-                }
-                */
                 ScrollSpeed += FloorAccelStep;
-                
             }
             NewSpeed?.Invoke(ScrollSpeed);
+            if(_floorCtl.BonusesSpawnerList.Count > 0)
+            {
+                foreach(var go in _floorCtl.BonusesSpawnerList)
+                {
+                    for(int i = 0; i < go.RootBonusesObjects.transform.childCount; i++)
+                    {
+                        go.RootBonusesObjects.transform.GetChild(i).GetComponent<BonusAction>().OnScoreChange += ChangeScore;
+                    }
+                }
+            }
         }
 
         void OnScrollSpeedChange(int NewScroolSpeed)
         {
             ScrollSpeed = NewScroolSpeed;
         }
-        
+        /*
         void OnScoreChanged(int newScore)
         {
             Score += newScore;
+            currentScore?.Invoke(Score);
+            MyTestEvent?.Invoke(Score);
+        }
+        */
+
+        void ChangeScore(int score)
+        {
+            Score += score;
             currentScore?.Invoke(Score);
         }
 
@@ -201,11 +215,14 @@ namespace Infinite_story
                 Traps,
                 TrapNumber,
                 GridSizeX,
-                GridSizeZ);
+                GridSizeZ
+                );
 
             _floorCtl.Awake();
             _floorCtl.Start();
 
+
+            // сбрасываем все объекты в общую кучу, чтобы быстре спаунить
             BonusesObjList = new List<GameObject>();
             
             if (GoodBonuses.Count > 0) BonusesObjList.AddRange(GoodBonuses);
@@ -216,6 +233,7 @@ namespace Infinite_story
             PrefabsLoader = new PreloadPrefabs(PrefabPath);
 
             PreloadedPrefabsList = PrefabsLoader.LoadPrefab(BonusesObjList);
+            /*
             if (PreloadedPrefabsList != null)
             {
                 foreach(KeyValuePair <int, GameObject> kvp in PreloadedPrefabsList)
@@ -223,7 +241,11 @@ namespace Infinite_story
                     Debug.Log($"hash: {kvp.Key}, name: {kvp.Value.name}");
                 }
             }
+            */
+
+
             GameObject SpawnedRoad = _floorCtl.SpawnedRoad;
+            
             NewSpeed?.Invoke(ScrollSpeed);
             // Спавним камеру
             CamCtl = new CamConroller(transform, Cam, SpawnedRoad);
@@ -233,6 +255,9 @@ namespace Infinite_story
             SetCamera?.Invoke(Cam);
             SetRoadTag?.Invoke(RoadTag);
             SetBonusesTag?.Invoke(BonusesTag);
+            ts = new TestScript();
+            ts.Listen(this);
+            
         }
 
         private void FixedUpdate()

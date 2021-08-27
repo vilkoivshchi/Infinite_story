@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if(other.CompareTag("Player"))
         {

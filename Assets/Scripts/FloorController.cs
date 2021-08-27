@@ -34,7 +34,7 @@ namespace Infinite_story
         private List<GameObject> _traps;
 
         private BonusesSpawner _bonusesSpawner;
-        private List<BonusesSpawner> _bsList;
+        public List<BonusesSpawner> BonusesSpawnerList;
 
         private string _roadTag, _bonusesTag;
 
@@ -94,7 +94,7 @@ namespace Infinite_story
                 _gridSizeZ,    
                 Road
                 );
-            _bsList.Add(_bonusesSpawner);
+            BonusesSpawnerList.Add(_bonusesSpawner);
             //_bonusesSpawner.Awake();
             _bonusesSpawner.SpawnBonuses();
             _roadList.Add(Road);
@@ -104,10 +104,10 @@ namespace Infinite_story
                 _roadList.Remove(_roadList[0]);
             }
             
-            if(_bsList.Count > 2)
+            if(BonusesSpawnerList.Count > 2)
             {
-                GameObject.Destroy(_bsList[0].RootBonusesObjects);
-                _bsList.Remove(_bsList[0]);
+                GameObject.Destroy(BonusesSpawnerList[0].RootBonusesObjects);
+                BonusesSpawnerList.Remove(BonusesSpawnerList[0]);
             }
         }
 
@@ -124,7 +124,6 @@ namespace Infinite_story
         {
             ColliderWatchdog.SpawnColliderHit -= SpawnRoad;
             UIController.SaveFileEvent -= SaveFile;
-            _bonusesSpawner?.OnDestroy();
             PlayerController.SetBonusesTag -= ReadBonusesTag;
             PlayerController.SetRoadTag -= ReadRoadTag;
             LoadGame.OnSaveFileReaded -= OnGameLoaded;
@@ -150,7 +149,7 @@ namespace Infinite_story
             SpawnedRoad = Road;
             //Road.name = $"Road{SpawnCounter++}";
             _roadList.Add(Road);
-            _bsList = new List<BonusesSpawner>();
+            BonusesSpawnerList = new List<BonusesSpawner>();
         }
 
         private void SeekAndDestroy(string Tag)
@@ -234,7 +233,7 @@ namespace Infinite_story
             SeekAndDestroy(_bonusesTag);
 
             _roadList.Clear();
-            _bsList.Clear();
+            BonusesSpawnerList.Clear();
 
             List<GameObject> SpawnedLoadedBonuses = new List<GameObject>();
             SpawnLoadedObject(LoadedRoadsList, _roadList);
@@ -242,13 +241,13 @@ namespace Infinite_story
             foreach(GameObject SpawnedBonus in SpawnedLoadedBonuses)
             {
                 _bonusesSpawner = new BonusesSpawner(SpawnedBonus);
-                _bsList.Add(_bonusesSpawner);
+                BonusesSpawnerList.Add(_bonusesSpawner);
             }
         }
 
         private void SaveFile()
         {
-            SetBonuses?.Invoke(_bsList);
+            SetBonuses?.Invoke(BonusesSpawnerList);
             SetRoads?.Invoke(_roadList);
             Save?.Invoke();
         }
@@ -259,9 +258,9 @@ namespace Infinite_story
             {
                 Road.transform.Translate(-Vector3.forward * ScrollSpeed * Time.deltaTime); 
             }
-            if(_bsList.Count > 0)
+            if(BonusesSpawnerList.Count > 0)
             {
-                foreach (BonusesSpawner bs in _bsList)
+                foreach (BonusesSpawner bs in BonusesSpawnerList)
                 {
                     bs.Update(ScrollSpeed);
                 }
