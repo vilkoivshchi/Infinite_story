@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Infinite_story
 {
-    public class RoadController : IInit, IClear
+    public class RoadController : IInit, IScriptUpdate, IClear
     {
         private RoadData _roadData;
         private List<GameObject> _roadsList;
@@ -60,7 +60,7 @@ namespace Infinite_story
             }
         }
 
-        public void Update()
+        public void ScriptUpdate()
         {
             foreach(GameObject road in _roadsList)
             {

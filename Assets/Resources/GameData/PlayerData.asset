@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42919bdcfb48f784b817ed5133292cfb, type: 3}
-  m_Name: RoadData
+  m_Script: {fileID: 11500000, guid: e0018ef73b5d9bc4284af7023961ad11, type: 3}
+  m_Name: PlayerData
   m_EditorClassIdentifier: 
-  _roadPrefab: {fileID: 7498833447197333039, guid: e50ca42686d2ba0458ed3d26abbdfa3e,
-    type: 3}
-  _spawnPosition: {x: 0, y: 0, z: 90}
-  _poolSize: 2
-  _scrollSpeed: 30
+  _player: {fileID: 840168362299015318, guid: ea25ec41734b0fb40a476f60a9b09144, type: 3}
+  _spawnCoordinates: {x: 0, y: 0.5, z: 0}
+  _sensivity: 4
+  _jumpForce: 6

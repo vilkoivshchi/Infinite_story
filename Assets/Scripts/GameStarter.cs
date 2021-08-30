@@ -5,21 +5,30 @@ namespace Infinite_story
 
     public class GameStarter : MonoBehaviour
     {
-        private RoadController _roadctl;
-        void Start()
+        private RoadController _roadCtl;
+        private PlayerController _playerCtl;
+        private void Start()
         {
-            _roadctl = new RoadController();
-            _roadctl.Init();
+            _roadCtl = new RoadController();
+            _playerCtl = new PlayerController();
+            _roadCtl.Init();
+            _playerCtl.Init();
         }
 
-        void OnDestroy()
+        private void OnDestroy()
         {
-            _roadctl.Clear();
+            _roadCtl.Clear();
         }
 
-        void Update()
+        private void FixedUpdate()
         {
-            _roadctl.Update();
+            _playerCtl.FixUpdate();
+        }
+
+        private void Update()
+        {
+            _roadCtl.ScriptUpdate();
+            _playerCtl.ScriptUpdate();
         }
     }
 }
