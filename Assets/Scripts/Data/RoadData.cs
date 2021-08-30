@@ -9,6 +9,7 @@ namespace Infinite_story
     {
         [SerializeField] private GameObject _roadPrefab;
         [SerializeField] private Vector3 _spawnPosition;
+        [SerializeField] private int _poolSize;
         [SerializeField] private int _scrollSpeed;
 
         public GameObject RoadPrefab
@@ -32,6 +33,14 @@ namespace Infinite_story
             get
             {
                 return _scrollSpeed;
+            }
+        }
+
+        public int PoolSize
+        {
+            get
+            {
+                return _poolSize;
             }
         }
 

@@ -9,21 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74ada6c75fe238a4baf0d9b925c3dab7, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a4b866190fc91944ae57050cd19a504, type: 3}
   m_Name: Bonuses Data
   m_EditorClassIdentifier: 
-  _goodBonuses: []
+  _goodBonuses:
+  - {fileID: 1973575197692397446, guid: ab6789350d7ea4547a2989e325893b9a, type: 3}
+  - {fileID: 7424321622775516760, guid: ef45dc8a43c1cd743a7b4f00bdc3bf45, type: 3}
+  - {fileID: 3555423654952306503, guid: 9ee0bcd71ae45c64ca97be781eac757e, type: 3}
   _goodBonusesQuantityMin: 10
   _goodBonusesQuantityMax: 20
-  _badBonuses: []
-  _badBonusesQuantityMin: 5
-  _badBonusesQuantityMax: 10
+  _badBonuses:
+  - {fileID: 0}
+  _badBonusesQuantityMin: 0
+  _badBonusesQuantityMax: 0
   _playerModificators: []
   _playerModificatorsQuantityMin: 0
   _playerModificatorsQuantityMax: 0
-  _traps:
-  - {fileID: 7494150092614142223, guid: 1e8840edc09d2e448981889e56e6f656, type: 3}
-  _trapsQuantityMin: 5
-  _trapsQuantityMax: 10
-  _gridSizeX: 6
-  _gridSizeZ: 20
+  _traps: []
+  _trapsQuantityMin: 0
+  _trapsQuantityMax: 0
+  _gridSizeX: 0
+  _gridSizeZ: 0

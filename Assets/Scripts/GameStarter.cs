@@ -12,6 +12,11 @@ namespace Infinite_story
             _roadctl.Init();
         }
 
+        void OnDestroy()
+        {
+            _roadctl.Clear();
+        }
+
         void Update()
         {
             _roadctl.Update();
