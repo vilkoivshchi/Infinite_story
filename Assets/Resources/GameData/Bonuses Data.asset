@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ada6c75fe238a4baf0d9b925c3dab7, type: 3}
+  m_Name: Bonuses Data
+  m_EditorClassIdentifier: 
+  _goodBonuses: []
+  _goodBonusesQuantityMin: 10
+  _goodBonusesQuantityMax: 20
+  _badBonuses: []
+  _badBonusesQuantityMin: 5
+  _badBonusesQuantityMax: 10
+  _playerModificators: []
+  _playerModificatorsQuantityMin: 0
+  _playerModificatorsQuantityMax: 0
+  _traps:
+  - {fileID: 7494150092614142223, guid: 1e8840edc09d2e448981889e56e6f656, type: 3}
+  _trapsQuantityMin: 5
+  _trapsQuantityMax: 10
+  _gridSizeX: 6
+  _gridSizeZ: 20
