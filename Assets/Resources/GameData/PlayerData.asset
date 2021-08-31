@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0018ef73b5d9bc4284af7023961ad11, type: 3}
+  m_Script: {fileID: 11500000, guid: e39434481bcd9774fb9272db747b3104, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  _player: {fileID: 840168362299015318, guid: ea25ec41734b0fb40a476f60a9b09144, type: 3}
-  _spawnCoordinates: {x: 0, y: 0.5, z: 0}
+  _player: {fileID: 840168362299015318, guid: bdd20b8345ffc1f4d856727b26ca046b, type: 3}
+  _spawnCoordinates: {x: 0, y: 0, z: 0}
   _sensivity: 4
   _jumpForce: 6

@@ -7,12 +7,16 @@ namespace Infinite_story
     {
         private RoadController _roadCtl;
         private PlayerController _playerCtl;
+        private BonusesController _bonusCtl;
+
         private void Start()
         {
             _roadCtl = new RoadController();
             _playerCtl = new PlayerController();
+            _bonusCtl = new BonusesController();
             _roadCtl.Init();
             _playerCtl.Init();
+            _bonusCtl.Init();
         }
 
         private void OnDestroy()

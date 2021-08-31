@@ -6,6 +6,13 @@ namespace Infinite_story
 {
     public class RoadController : IInit, IScriptUpdate, IClear
     {
+        public List<GameObject> RoadsList
+        {
+            get
+            {
+                return _roadsList;
+            }
+        }
         private RoadData _roadData;
         private List<GameObject> _roadsList;
         private int _scrollSpeed;
