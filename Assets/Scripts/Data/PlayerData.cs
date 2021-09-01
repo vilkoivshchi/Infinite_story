@@ -1,42 +1,45 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Player Data", menuName = "Player Data", order = 53)]
-public class PlayerData : ScriptableObject
+namespace Infinite_story
 {
-    [SerializeField] private GameObject _player;
-    [SerializeField] private Vector3 _spawnCoordinates;
-    [SerializeField] private int _sensivity;
-    [SerializeField] private int _jumpForce;
-
-    public GameObject Player
+    [CreateAssetMenu(fileName = "New Player Data", menuName = "Player Data", order = 53)]
+    public class PlayerData : ScriptableObject
     {
-        get
+        [SerializeField] private GameObject _player;
+        [SerializeField] private Vector3 _spawnCoordinates;
+        [SerializeField] private int _sensivity;
+        [SerializeField] private int _jumpForce;
+
+        public GameObject Player
         {
-            return _player;
+            get
+            {
+                return _player;
+            }
         }
-    }
 
-    public Vector3 SpawnCoordinates
-    {
-        get 
+        public Vector3 SpawnCoordinates
         {
-            return _spawnCoordinates;
+            get
+            {
+                return _spawnCoordinates;
+            }
         }
-    }
 
-    public int Sensivity
-    {
-        get
+        public int Sensivity
         {
-            return _sensivity;
+            get
+            {
+                return _sensivity;
+            }
         }
-    }
 
-    public int JumpForce
-    {
-        get
+        public int JumpForce
         {
-            return _jumpForce;
+            get
+            {
+                return _jumpForce;
+            }
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Infinite_story
 {
-    public class PlayerController : IInit, IFixUpdate, IScriptUpdate
+    public class PlayerController : IInit, IFixUpdate, IScriptUpdate, IController
     {
         private GameObject _player;
         private PlayerData _playerData;

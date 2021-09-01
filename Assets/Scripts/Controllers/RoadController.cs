@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Infinite_story
 {
-    public class RoadController : IInit, IScriptUpdate, IClear
+    public class RoadController : IInit, IScriptUpdate, IClear, IController
     {
         public List<GameObject> RoadsList
         {
@@ -17,14 +17,28 @@ namespace Infinite_story
         private List<GameObject> _roadsList;
         private int _scrollSpeed;
         private int _roadCounter = 0;
+
+        public RoadController()
+        {
+
+        }
+
+        public RoadController(RoadData roaddata)
+        {
+            _roadData = roaddata;
+        }
+
         /// <summary>
         /// Объектовый пул, но вместо включения-выключения переставляем сегменты дороги по мере приближения игрока.
         /// </summary>
         public void Init()
         {
             _roadsList = new List<GameObject>();
-            _roadData = Resources.Load<RoadData>("GameData/RoadData");
-            if (_roadData == null) throw new FileNotFoundException($"Road Data not found");
+            if(_roadData == null)
+            {
+                throw new FileNotFoundException($"Road Data not found");
+            }
+            
             for(int i = 0; i < _roadData.PoolSize; i++)
             {
                 GameObject Road = GameObject.Instantiate(_roadData.RoadPrefab, new Vector3(
