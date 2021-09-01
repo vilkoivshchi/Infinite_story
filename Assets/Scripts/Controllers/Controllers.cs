@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Infinite_story
 {
+    /// <summary>
+    /// Сортирует классы по признаку наследования от интерфейса, чтобы потом 
+    /// запускать методы перебором списка
+    /// </summary>
     internal sealed class Controllers : IInit, IFixUpdate, IScriptUpdate, IClear
     {
         private readonly List<IInit> _initControllers;

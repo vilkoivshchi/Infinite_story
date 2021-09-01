@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -11,6 +12,14 @@ namespace Infinite_story
             get
             {
                 return _roadsList;
+            }
+        }
+
+        public RoadData RoadsData
+        {
+            get
+            {
+                return _roadData;
             }
         }
         private RoadData _roadData;
@@ -28,9 +37,7 @@ namespace Infinite_story
             _roadData = roaddata;
         }
 
-        /// <summary>
-        /// Объектовый пул, но вместо включения-выключения переставляем сегменты дороги по мере приближения игрока.
-        /// </summary>
+        
         public void Init()
         {
             _roadsList = new List<GameObject>();
@@ -54,7 +61,7 @@ namespace Infinite_story
             _scrollSpeed = _roadData.ScrollSpeed;
         }
 
-        private void SpawnNewRoad()
+        private void SpawnNewRoad(Vector3 pos)
         {
             _roadsList[_roadCounter].transform.position = new Vector3(
                 _roadsList[_roadCounter].transform.position.x,
@@ -72,7 +79,7 @@ namespace Infinite_story
           
         }
 
-
+        //~RoadController() 
         public void Clear()
         {
             foreach(GameObject go in _roadsList)

@@ -2,8 +2,8 @@
 
 namespace Infinite_story
 {
-    public interface ITriggerColliderEnter
+    public interface ITriggerColliderEnter<T>
     {
-            event Action OnTriggerColliderEnter;
+            event Action<T> OnTriggerColliderEnter;
     }
 }

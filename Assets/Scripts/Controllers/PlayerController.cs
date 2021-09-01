@@ -11,9 +11,14 @@ namespace Infinite_story
         private SphereCollider _playerCollider;
         private float _deltaX;
 
+        public PlayerController(PlayerData playerdata)
+        {
+            _playerData = playerdata;
+        }
+
         public void Init()
         {
-            _playerData = Resources.Load<PlayerData>("GameData/PlayerData");
+            //_playerData = Resources.Load<PlayerData>("GameData/PlayerData");
             if (_playerData == null) throw new FileNotFoundException($"Player Data not found");
             _player = GameObject.Instantiate(_playerData.Player, _playerData.SpawnCoordinates, Quaternion.identity);
             _playerRigidBody = _player.GetComponent<Rigidbody>();
