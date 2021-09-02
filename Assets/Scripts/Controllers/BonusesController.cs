@@ -6,6 +6,7 @@ namespace Infinite_story
     public class BonusesController : IInit, IScriptUpdate, IClear, IController
     {
         private List<GameObject> _roadsList;
+        
         private BonusesData _bonusesData;
         private RoadController _roadController;
         private int _scrollSpeed;
@@ -23,17 +24,21 @@ namespace Infinite_story
             {
                 _roadsList[i].GetComponentInChildren<SpawnColliderObserver>().OnTriggerColliderEnter += SpawnBonuses;
             }
+            /*
             _roadsList = new List<GameObject>();
             for(int i = 0; i < _roadController.RoadsData.PoolSize; i++)
             {
                 _roadsList.Add(new GameObject());
             }
+            */
             _scrollSpeed = _roadController.RoadsData.ScrollSpeed;
         }
 
         private void SpawnBonuses(Vector3 pos)
         {
-            //Debug.Log($"pos: {pos}");
+            Vector3 roadbounds = _roadsList[0].GetComponent<BoxCollider>().bounds.extents;
+            Debug.Log(roadbounds);
+            
         }
 
         public void ScriptUpdate()
