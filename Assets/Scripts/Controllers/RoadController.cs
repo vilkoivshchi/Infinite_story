@@ -64,11 +64,7 @@ namespace Infinite_story
         private void SpawnNewRoad(Vector3 pos)
         {
             
-            _roadsList[_roadCounter].transform.position = new Vector3(
-                _roadsList[_roadCounter].transform.position.x,
-                _roadsList[_roadCounter].transform.position.y,
-                _roadsList[_roadCounter].transform.position.z + _roadsList[_roadCounter].transform.localScale.z
-                );
+            _roadsList[_roadCounter].transform.position = new Vector3(pos.x, pos.y, pos.z + _roadData.RoadPrefab.transform.localScale.z);
             if (!_roadsList[_roadCounter].activeInHierarchy)
             {
                 _roadsList[_roadCounter].SetActive(true);

@@ -42,11 +42,14 @@ namespace Infinite_story
         private void SpawnBonuses(Vector3 pos)
         {
             BoxCollider roadbounds = _roadsList[_currentRoadIndex].GetComponent<BoxCollider>();
+           
             Vector3 _spawnCoordsBeginPoint = new Vector3(
             roadbounds.bounds.center.x - roadbounds.bounds.extents.x,
             roadbounds.bounds.center.y + roadbounds.bounds.extents.y,
-            roadbounds.bounds.center.z - roadbounds.bounds.extents.z
+            roadbounds.bounds.center.z + roadbounds.bounds.extents.z
             );
+            
+
             float pointsX = roadbounds.bounds.size.x / _bonusesData.GridSizeX;
             float pointsZ = roadbounds.bounds.size.z / _bonusesData.GridSizeZ;
             List<Vector3> _spawnCoords = new List<Vector3>();
@@ -68,14 +71,27 @@ namespace Infinite_story
                     }
                 }
             }
-            for (int i = 0; i < _spawnCoords.Count; i++)
-            {
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.transform.position = _spawnCoords[i];
+            
+            int GoodBonusesQuantity = Random.Range(_bonusesData.GoodBonusesQuantityMin, _bonusesData.GoodBonusesQuantityMax);
+            int BadBonusesQuantity = Random.Range(_bonusesData.BadBonusesQuantityMin, _bonusesData.BadBonusesQuantityMax);
+            int ModificatorsQuantity = Random.Range(_bonusesData.PlayerModificatorsQuantityMin, _bonusesData.PlayerModificatorsQuantityMax);
+            int TrapsQuantity = Random.Range(_bonusesData.TrapsQuantityMin, _bonusesData.TrapsQuantityMax);
 
-                cube.transform.SetParent(_rootBonusObjects[_currentRoadIndex].transform, true);
-                
+            GoodBonusFactory goodBonusFactory = new GoodBonusFactory();
+            for(int i = 0; i < GoodBonusesQuantity; i++)
+            {
+                int spawnIndex = Random.Range(0, _spawnCoords.Count);
+                Vector3 bonusPosition = _spawnCoords[spawnIndex];
+                Quaternion bonusRotatation = Quaternion.AngleAxis(90, Vector3.right);
+                GameObject bonus = goodBonusFactory.CreateBonus(_bonusesData.GoodBonuses[Random.Range(0, _bonusesData.GoodBonuses.Count)], 
+                    bonusPosition, 
+                    bonusRotatation, 
+                    _rootBonusObjects[_currentRoadIndex]);
+                //bonus.transform.SetParent(_rootBonusObjects[_currentRoadIndex].transform);
+                _spawnCoords.Remove(_spawnCoords[spawnIndex]);
             }
+
+
         }
 
         public void ScriptUpdate()

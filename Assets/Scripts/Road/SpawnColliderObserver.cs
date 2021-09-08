@@ -11,7 +11,7 @@ namespace Infinite_story
             if (other.CompareTag("Player"))
             {
                     OnTriggerColliderEnter?.Invoke(transform.parent.position);
-                Debug.Log($"{transform.parent.name} was send action");
+                //Debug.Log($"{transform.parent.name} was send action");
             }
         }
     }
