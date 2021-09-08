@@ -11,6 +11,8 @@ namespace Infinite_story
         private RoadController _roadController;
         private int _scrollSpeed;
         private int _currentRoadIndex;
+        private int _coordArrayPointer;
+
         public BonusesController(RoadController roadctl, BonusesData bonusesData)
         {
             _bonusesData = bonusesData;
@@ -73,23 +75,37 @@ namespace Infinite_story
             }
             
             int GoodBonusesQuantity = Random.Range(_bonusesData.GoodBonusesQuantityMin, _bonusesData.GoodBonusesQuantityMax);
+            // это потом вынести в ScriptableObject. Или нет.
+            
             int BadBonusesQuantity = Random.Range(_bonusesData.BadBonusesQuantityMin, _bonusesData.BadBonusesQuantityMax);
             int ModificatorsQuantity = Random.Range(_bonusesData.PlayerModificatorsQuantityMin, _bonusesData.PlayerModificatorsQuantityMax);
             int TrapsQuantity = Random.Range(_bonusesData.TrapsQuantityMin, _bonusesData.TrapsQuantityMax);
 
-            GoodBonusFactory goodBonusFactory = new GoodBonusFactory();
-            for(int i = 0; i < GoodBonusesQuantity; i++)
+            
+            int firstBonus = Random.Range(0, _bonusesData.GridSizeX);
+
+            BonusFactory goodBonusFactory = new BonusFactory();
+
+            for (int j = GoodBonusesQuantity; j > 0; j--)
             {
-                int spawnIndex = Random.Range(0, _spawnCoords.Count);
-                Vector3 bonusPosition = _spawnCoords[spawnIndex];
-                Quaternion bonusRotatation = Quaternion.AngleAxis(90, Vector3.right);
-                GameObject bonus = goodBonusFactory.CreateBonus(_bonusesData.GoodBonuses[Random.Range(0, _bonusesData.GoodBonuses.Count)], 
-                    bonusPosition, 
-                    bonusRotatation, 
-                    _rootBonusObjects[_currentRoadIndex]);
-                //bonus.transform.SetParent(_rootBonusObjects[_currentRoadIndex].transform);
-                _spawnCoords.Remove(_spawnCoords[spawnIndex]);
+                int GoodBonusesSequenceLenght = Random.Range(2, 6);
+                _coordArrayPointer = firstBonus;
+                for (int i = 0; i < GoodBonusesSequenceLenght; i++)
+                {
+                    //int spawnIndex = Random.Range(0, _spawnCoords.Count);
+                    
+                    Vector3 bonusPosition = _spawnCoords[_coordArrayPointer];
+                    Quaternion bonusRotatation = Quaternion.AngleAxis(90, Vector3.right);
+                    goodBonusFactory.CreateBonus(_bonusesData.GoodBonuses[Random.Range(0, _bonusesData.GoodBonuses.Count)],
+                        bonusPosition,
+                        bonusRotatation,
+                        _rootBonusObjects[_currentRoadIndex]);
+                    _spawnCoords.Remove(_spawnCoords[_coordArrayPointer]);
+                    _coordArrayPointer += _bonusesData.GridSizeX;
+                }
             }
+            
+            
 
 
         }

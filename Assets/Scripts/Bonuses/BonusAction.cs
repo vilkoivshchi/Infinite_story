@@ -24,7 +24,7 @@ namespace Infinite_story
             if(other.CompareTag("Player"))
             {
                 ScoreChange(ChangeScoreTo);
-        //        Destroy(gameObject);
+                Destroy(gameObject);
             }
         }
 
