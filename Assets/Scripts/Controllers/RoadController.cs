@@ -77,9 +77,21 @@ namespace Infinite_story
         //~RoadController() 
         public void Clear()
         {
+            
             foreach(GameObject go in _roadsList)
             {
-                go.GetComponentInChildren<SpawnColliderObserver>().OnTriggerColliderEnter -= SpawnNewRoad;
+                if (go)
+                {
+                    for (int i = 0; i < go.transform.childCount; i++)
+                    {
+                        SpawnColliderObserver colliderObserver;
+                        go.transform.GetChild(i).TryGetComponent(out colliderObserver);
+                        if (colliderObserver != null)
+                        {
+                            colliderObserver.OnTriggerColliderEnter -= SpawnNewRoad;
+                        }
+                    }
+                }
             }
         }
 
