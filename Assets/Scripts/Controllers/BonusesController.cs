@@ -14,12 +14,14 @@ namespace Infinite_story
         private RoadController _roadController;
         private int _scrollSpeed;
         private int _nextRoadIndex;
+        
         private Dictionary<int, GameObject> _bonusesPoolsList;
+        /*
         private GameObject _goodBonusesPool;
         private GameObject _badBonusesPool;
         private GameObject _playerModificatorsPool;
         private GameObject _trapsPool;
-
+        */
         private float NormalTimeScale = 0;
 
         public BonusesController(RoadController roadctl, BonusesData bonusesData)
@@ -32,59 +34,61 @@ namespace Infinite_story
         {
             _roadsList = _roadController.RoadsList;
             _rootBonusObjects = new List<GameObject>();
+            BonusFactory BonusesFactory = new BonusFactory();
             for (int i = 0; i < _roadsList.Count; i++)
             {
                 _roadsList[i].GetComponentInChildren<SpawnColliderObserver>().OnTriggerColliderEnter += SpawnBonuses;
                 GameObject RootBonusObject = new GameObject($"Root Bonuses Object");
                 RootBonusObject.transform.position = _roadsList[i].transform.position;
+                RootBonusObject.AddComponent<RoadBonuses>();
+                RoadBonuses roadBonus = RootBonusObject.GetComponent<RoadBonuses>();
+                roadBonus.GoodBonuses = new List<GameObject>();
+                roadBonus.BadBonuses = new List<GameObject>();
+                roadBonus.PlayerModificators = new List<GameObject>();
+                roadBonus.Traps = new List<GameObject>();
+                InitBonuses(_bonusesData.GoodBonuses, _bonusesData.GoodBonusesQuantityMax, Vector3.right, 90f, roadBonus.GoodBonuses, RootBonusObject, BonusesFactory);
+                InitBonuses(_bonusesData.BadBonuses, _bonusesData.BadBonusesQuantityMax, Vector3.right, -90f, roadBonus.BadBonuses, RootBonusObject, BonusesFactory);
+                InitBonuses(_bonusesData.PlayerModificators, _bonusesData.PlayerModificatorsQuantityMax, Vector3.right, 0, roadBonus.PlayerModificators, RootBonusObject, BonusesFactory);
+                InitBonuses(_bonusesData.Traps, _bonusesData.TrapsQuantityMax, Vector3.right, -90f, roadBonus.Traps, RootBonusObject, BonusesFactory);
                 _rootBonusObjects.Add(RootBonusObject);
                 
             }
             _scrollSpeed = _roadController.RoadsData.ScrollSpeed;
 
             _roadController.SetRoadIndex += OnSetRoadIndex;
-            
-            _bonusesPoolsList = new Dictionary<int, GameObject>();
-            _goodBonusesPool = new GameObject("GoodBonuses Pool");
-            _badBonusesPool = new GameObject("BadBonuses Pool");
-            _playerModificatorsPool = new GameObject("Player Modificators pool");
-            _trapsPool = new GameObject("Traps pool");
-            _bonusesPoolsList.Add(_goodBonusesPool.name.GetHashCode(), _goodBonusesPool);
-            _bonusesPoolsList.Add(_badBonusesPool.name.GetHashCode(), _badBonusesPool);
-            _bonusesPoolsList.Add(_playerModificatorsPool.name.GetHashCode(), _playerModificatorsPool);
-            _bonusesPoolsList.Add(_trapsPool.name.GetHashCode(), _trapsPool);
-        
-            BonusFactory BonusesFactory = new BonusFactory();
-            InitBonuses(_bonusesData.GoodBonuses, _bonusesData.GoodBonusesQuantityMax * _roadsList.Capacity , Vector3.right, 90f, _goodBonusesPool, BonusesFactory);
-            InitBonuses(_bonusesData.BadBonuses, _bonusesData.BadBonusesQuantityMax * _roadsList.Capacity, Vector3.right, -90f, _badBonusesPool, BonusesFactory);
-            InitBonuses(_bonusesData.PlayerModificators, _bonusesData.PlayerModificatorsQuantityMax * _roadsList.Capacity, Vector3.right, 0, _playerModificatorsPool, BonusesFactory);
-            InitBonuses(_bonusesData.Traps, _bonusesData.TrapsQuantityMax * _roadsList.Capacity, Vector3.right, -90, _trapsPool, BonusesFactory);
+                        
             NormalTimeScale = Time.timeScale;
         }
 
-        private void InitBonuses(List<GameObject> prefabList, int maxQuamtity, Vector3 rotationAxis, float angle, GameObject parent, BonusFactory factory, bool randomRotation = false)
+        private void InitBonuses(List<GameObject> prefabList, int maxQuantity, Vector3 rotationAxis, float angle, List<GameObject> bonusesList, GameObject parent, BonusFactory factory, bool randomRotation = false)
         {
-            for (int i = 0; i < maxQuamtity; i++)
+            int currentPrefab = 0;
+            for (int i = 0; i < maxQuantity; i++)
             {
-                for (int j = 0; j < prefabList.Count; j++)
-                {
+                
                     GameObject bonus;
-                    bonus = factory.CreateBonus(prefabList[j], Vector3.zero, Quaternion.AngleAxis(angle, rotationAxis), parent);
+                    bonus = factory.CreateBonus(prefabList[currentPrefab], Vector3.zero, Quaternion.AngleAxis(angle, rotationAxis), parent);
+                    bonus.SetActive(false);
+                    bonusesList.Add(bonus);
                     if (randomRotation)
                     {
                         bonus.transform.rotation = Quaternion.AngleAxis(Random.Range(0, angle), Vector3.up);
                     }
-                    Ident bonusIdent = bonus.AddComponent<Ident>();
-                    bonusIdent.BonusIdent = parent.name.GetHashCode();
                     BonusAction bonusAction;
                     bonus.TryGetComponent(out bonusAction);
                     if(bonusAction != null)
                     {
                         bonusAction.SetCaller += OnBonusGet;
                     }
-                    bonus.SetActive(false);
+                if(currentPrefab == prefabList.Capacity - 1)
+                {
+                    currentPrefab = 0;
                 }
-
+                else
+                {
+                    currentPrefab++;
+                }
+                
             }
         }
 
@@ -129,14 +133,16 @@ namespace Infinite_story
             int BadBonusesQuantity = Random.Range(_bonusesData.BadBonusesQuantityMin, _bonusesData.BadBonusesQuantityMax);
             int ModificatorsQuantity = Random.Range(_bonusesData.PlayerModificatorsQuantityMin, _bonusesData.PlayerModificatorsQuantityMax);
             int TrapsQuantity = Random.Range(_bonusesData.TrapsQuantityMin, _bonusesData.TrapsQuantityMax);
-
+            /*
             ReturnBonusesToPool(_rootBonusObjects[_nextRoadIndex]);
             Time.timeScale = 0;
             PlaceBonusesAtMap(_goodBonusesPool, GoodBonusesQuantity, _spawnCoords, _rootBonusObjects[_nextRoadIndex]);
             PlaceBonusesAtMap(_badBonusesPool, BadBonusesQuantity, _spawnCoords, _rootBonusObjects[_nextRoadIndex]);
             PlaceBonusesAtMap(_playerModificatorsPool, ModificatorsQuantity, _spawnCoords, _rootBonusObjects[_nextRoadIndex]);
             PlaceBonusesAtMap(_trapsPool, TrapsQuantity, _spawnCoords, _rootBonusObjects[_nextRoadIndex]);
-
+            */
+            RoadBonuses CurrentRoadBonuses = _rootBonusObjects[_nextRoadIndex].GetComponent<RoadBonuses>();
+            PlaceBonusesAtMap(CurrentRoadBonuses.GoodBonuses, GoodBonusesQuantity, _spawnCoords, _rootBonusObjects[_nextRoadIndex]);
         }
 
         private void OnBonusGet(GameObject sender)
@@ -151,13 +157,19 @@ namespace Infinite_story
             sender.SetActive(false);
         }
 
-        private void PlaceBonusesAtMap(GameObject bonusesPool, int bonusesQantity, List<Vector3> spawnCoords, GameObject rootObject)
+        private void PlaceBonusesAtMap(List<GameObject> bonusesPool, int bonusesQantity, List<Vector3> spawnCoords, GameObject rootObject)
         {
+            List<int> bonusesPoolIndex = new List<int>();
+            for(int i = 0; i < bonusesPool.Count; i++)
+            {
+                bonusesPoolIndex.Add(i);
+            }
+
             for (int i = 0; i < bonusesQantity; i++)
             {
-                if (bonusesPool.transform.childCount > 0)
-                {
-                    GameObject newBonus = bonusesPool.transform.GetChild(Random.Range(0, bonusesPool.transform.childCount)).gameObject;
+                int bonusIndex = Random.Range(0, bonusesPoolIndex.Count);
+                bonusesPoolIndex.Remove(bonusesPoolIndex[bonusIndex]);
+                    GameObject newBonus = bonusesPool[bonusIndex];
                     int newBonusPositionIndex = Random.Range(0, spawnCoords.Count);
                     Renderer renderer = newBonus.GetComponent<Renderer>();
                     Vector3 newBonusPosition = new Vector3(
@@ -168,8 +180,6 @@ namespace Infinite_story
                     newBonus.transform.position = newBonusPosition;
                     newBonus.transform.SetParent(rootObject.transform, true);
                     newBonus.SetActive(true);
-                }
-                else Debug.LogWarning($"{bonusesPool.name} is empty!");
             }
         }
 
