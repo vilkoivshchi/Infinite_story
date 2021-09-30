@@ -15,15 +15,6 @@ namespace Infinite_story
         private int _scrollSpeed;
         private int _nextRoadIndex;
         
-        private Dictionary<int, GameObject> _bonusesPoolsList;
-        /*
-        private GameObject _goodBonusesPool;
-        private GameObject _badBonusesPool;
-        private GameObject _playerModificatorsPool;
-        private GameObject _trapsPool;
-        */
-        private float NormalTimeScale = 0;
-
         public BonusesController(RoadController roadctl, BonusesData bonusesData)
         {
             _bonusesData = bonusesData;
@@ -57,7 +48,6 @@ namespace Infinite_story
 
             _roadController.SetRoadIndex += OnSetRoadIndex;
                         
-            NormalTimeScale = Time.timeScale;
         }
 
         private void InitBonuses(List<GameObject> prefabList, int maxQuantity, Vector3 rotationAxis, float angle, List<GameObject> bonusesList, GameObject parent, BonusFactory factory, bool randomRotation = false)
@@ -133,27 +123,19 @@ namespace Infinite_story
             int BadBonusesQuantity = Random.Range(_bonusesData.BadBonusesQuantityMin, _bonusesData.BadBonusesQuantityMax);
             int ModificatorsQuantity = Random.Range(_bonusesData.PlayerModificatorsQuantityMin, _bonusesData.PlayerModificatorsQuantityMax);
             int TrapsQuantity = Random.Range(_bonusesData.TrapsQuantityMin, _bonusesData.TrapsQuantityMax);
-            /*
+            
             ReturnBonusesToPool(_rootBonusObjects[_nextRoadIndex]);
-            Time.timeScale = 0;
-            PlaceBonusesAtMap(_goodBonusesPool, GoodBonusesQuantity, _spawnCoords, _rootBonusObjects[_nextRoadIndex]);
-            PlaceBonusesAtMap(_badBonusesPool, BadBonusesQuantity, _spawnCoords, _rootBonusObjects[_nextRoadIndex]);
-            PlaceBonusesAtMap(_playerModificatorsPool, ModificatorsQuantity, _spawnCoords, _rootBonusObjects[_nextRoadIndex]);
-            PlaceBonusesAtMap(_trapsPool, TrapsQuantity, _spawnCoords, _rootBonusObjects[_nextRoadIndex]);
-            */
+            
             RoadBonuses CurrentRoadBonuses = _rootBonusObjects[_nextRoadIndex].GetComponent<RoadBonuses>();
             PlaceBonusesAtMap(CurrentRoadBonuses.GoodBonuses, GoodBonusesQuantity, _spawnCoords, _rootBonusObjects[_nextRoadIndex]);
+            PlaceBonusesAtMap(CurrentRoadBonuses.BadBonuses, BadBonusesQuantity, _spawnCoords, _rootBonusObjects[_nextRoadIndex]);
+            PlaceBonusesAtMap(CurrentRoadBonuses.PlayerModificators, ModificatorsQuantity, _spawnCoords, _rootBonusObjects[_nextRoadIndex]);
+            PlaceBonusesAtMap(CurrentRoadBonuses.Traps, TrapsQuantity, _spawnCoords, _rootBonusObjects[_nextRoadIndex]);
         }
 
         private void OnBonusGet(GameObject sender)
         {
-            foreach (KeyValuePair<int, GameObject> kvp in _bonusesPoolsList)
-            {
-                if (kvp.Key == sender.GetComponent<Ident>().BonusIdent)
-                {
-                    sender.transform.SetParent(kvp.Value.transform);
-                }                
-            }
+            
             sender.SetActive(false);
         }
 
@@ -185,28 +167,10 @@ namespace Infinite_story
 
         private void ReturnBonusesToPool(GameObject parent)
         {
-            int returnedBonuses = 0;
-            Debug.Log($"Childs in parent: {parent.transform.childCount}");
-                for(int i = 0; i < parent.transform.childCount; i++)
-                {
-                    GameObject bonus = parent.transform.GetChild(i).gameObject;
-                    
-                    bonus.transform.position = Vector3.zero;
-                    int bonusId = bonus.GetComponent<Ident>().BonusIdent;
-                    foreach(KeyValuePair<int, GameObject> kvp in _bonusesPoolsList)
-                    {
-                        
-                        if (bonusId == kvp.Key)
-                        {
-                            bonus.transform.SetParent(kvp.Value.transform);
-                        //Debug.Log($"{bonus.name} was returned to {kvp.Value.name}");
-                        returnedBonuses++;
-                        }
-                    }
-                if (bonus.transform.parent == parent) Debug.Log($"parent not changed");
-                    bonus.SetActive(false);
-                }
-            Debug.Log($"Returned: {returnedBonuses}");
+            for(int i = 0; i < parent.transform.childCount; i++)
+            {
+                parent.transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
 
         public void ScriptUpdate()
@@ -215,7 +179,6 @@ namespace Infinite_story
             {
                 _rootBonusObjects[i].transform.Translate(-Vector3.forward * _scrollSpeed * Time.deltaTime);
             }
-            if (Input.GetKeyDown(KeyCode.P)) Time.timeScale = NormalTimeScale;
         }
 
         public void Clear()
@@ -225,26 +188,16 @@ namespace Infinite_story
                 if (_roadsList[i])
                 {
                     _roadsList[i].GetComponentInChildren<SpawnColliderObserver>().OnTriggerColliderEnter -= SpawnBonuses;
+                    for(int j = 0; j < _roadsList[i].transform.childCount; j++)
+                    {
+                        _roadsList[i].transform.GetChild(j).gameObject.GetComponent<BonusAction>().SetCaller -= OnBonusGet;
+                    }
                 }
             }
             _roadController.SetRoadIndex -= OnSetRoadIndex;
 
+           
 
-            foreach (KeyValuePair<int, GameObject> kvp in _bonusesPoolsList)
-            {
-                if (kvp.Value)
-                {
-                    for (int i = 0; i < kvp.Value.transform.childCount; i++)
-                    {
-                        BonusAction action;
-                        kvp.Value.transform.GetChild(i).TryGetComponent(out action);
-                        if (action != null)
-                        {
-                            action.SetCaller -= OnBonusGet;
-                        }
-                    }
-                }
-            }
         }
     }
 }
