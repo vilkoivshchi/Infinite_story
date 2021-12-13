@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7962d5e7b38dd429f96a1086f3a02c, type: 3}
+  m_Name: RoadData
+  m_EditorClassIdentifier: 
+  _roadPrefab: {fileID: 7498833447197333039, guid: e50ca42686d2ba0458ed3d26abbdfa3e,
+    type: 3}
+  _spawnPosition: {x: 0, y: 0, z: 90}
+  _poolSize: 2
+  _scrollSpeed: 30

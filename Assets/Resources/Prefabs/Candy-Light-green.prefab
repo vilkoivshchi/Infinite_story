@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2848393819224101529}
   - component: {fileID: 27989578792412755}
   - component: {fileID: 8545414751783204508}
-  - component: {fileID: 5207387779365170650}
+  - component: {fileID: 2527413748260285056}
   m_Layer: 9
   m_Name: Candy-Light-green
   m_TagString: Bonuses
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.040898293, y: 0.008404641, z: 0.019999998}
   m_Center: {x: 0.00032262504, y: -6.984918e-10, z: 9.7800335e-18}
---- !u!114 &5207387779365170650
+--- !u!114 &2527413748260285056
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1973575197692397446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 798176ca412a51d41a3b91bc77b7e639, type: 3}
+  m_Script: {fileID: 11500000, guid: 1816b09af2bd42843bfd440d79ae5611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ChangeScoreTo: 10
